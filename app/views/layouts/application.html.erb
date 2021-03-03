@@ -21,7 +21,7 @@
         通知
       </div>
       <div class="header-mypage m-3">
-        マイページ
+        <%= link_to "マイページ", users_path %>
       </div>
       
       <% if user_signed_in? %>
