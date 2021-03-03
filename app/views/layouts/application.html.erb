@@ -9,6 +9,30 @@
   </head>
 
   <body>
+    <!--↓ヘッダー↓-->
+    <header class="d-flex">
+      <div class="header-title m-3">
+        <h1>Empathy</h1>
+      </div>
+      <div class="header-trouble-list m-3">
+        悩み一覧
+      </div>
+      <div class="header-notification m-3">
+        通知
+      </div>
+      <div class="header-mypage m-3">
+        マイページ
+      </div>
+      
+      <% if user_signed_in? %>
+        ユーザ名<%= current_user.name %>（目印）
+      <% else%>
+        ログインしてない（目印）
+      <% end %>
+    </header>
+    <!--↑ヘッダー↑-->
+    
+    
     <%= yield %>
   </body>
 </html>
