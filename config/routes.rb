@@ -1,3 +1,6 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  root to: 'homes#top'
+  resource :users, only: [:show, :edit, :update]
+  resources :troubles  #trounles, まだsearchは入れていません。
+  devise_for :users
 end
