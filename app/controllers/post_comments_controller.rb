@@ -11,11 +11,15 @@ class PostCommentsController < ApplicationController
   end
 
   def update
+    @post_comment = PostComment.find(params[:id])
+    @post_comment.update(is_thanked: true)
+    binding.pry
+    redirect_to request.referer
   end
   
   private
   
   def post_comment_params
-    params.require(:post_comment).permit(:comment, :trouble_id)
+    params.require(:post_comment).permit(:comment, :trouble_id, :is_thanked)
   end
 end

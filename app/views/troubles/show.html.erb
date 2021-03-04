@@ -23,8 +23,9 @@
         <p>コメント内容：<%= post_comment.comment %></p>
         <p>表示ステータス: <%= post_comment.is_displayed %></p>
       <% end %>
-        <!--↓いいね欄↓-->
+      
         <% if current_user.id != @trouble.user_id %>
+        <!--↓いいね欄↓-->
         <div class="comment-like-area">
           <% if post_comment.liked_by?(current_user) %>
             <%= link_to post_comment_likes_path(post_comment), method: :delete do %>
@@ -36,8 +37,18 @@
             <% end %>
           <% end %>
         </div>
+        <!--↑いいね欄↑-->
+        <% elsif current_user.id == @trouble.user_id %>
+        <!--↓感謝ボタン記述↓-->
+         <div class="comment-thanks-area">
+          <% if post_comment.is_thanked == false %>
+            <%= link_to "感謝する",trouble_post_comment_path(@trouble, post_comment), method: :patch %>
+          <% else %>
+            感謝済み
+          <% end %>
+         </div>
+        <!--↑感謝ボタン記述↑-->
         <% end %>
-      <!--↑いいね欄↑-->
     <% end %>
       
   </div>
