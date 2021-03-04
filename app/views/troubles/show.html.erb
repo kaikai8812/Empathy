@@ -1,3 +1,6 @@
+<% if flash[:likes] %>
+  <p><%= flash[:likes] %></p>
+<% end %>
 <h1>悩み詳細画面</h1>
 <div class="trouble-main">
   
@@ -17,23 +20,22 @@
       <p>ユーザ名：<%= post_comment.user.name%></p>
       <p>コメント内容：<%= post_comment.comment %></p>
       <!--↓いいね欄↓-->
-      <% if current_user.id != @trouble.user_id && current_user.id != post_comment.user_id %>
+      <% if current_user.id != @trouble.user_id %>
+      <div class="comment-like-area">
         <% if post_comment.liked_by?(current_user) %>
-        
           <%= link_to post_comment_likes_path(post_comment), method: :delete do %>
             いいね済み
           <% end %>
-          
         <% else %>
-        
           <%= link_to post_comment_likes_path(post_comment), method: :post do%>
             いいねする
           <% end %>
-          
         <% end %>
       <% end %>
       <!--↑いいね欄↑-->
+      </div>
     <% end %>
+      
   </div>
   <!--↑コメント一覧↑-->
   
