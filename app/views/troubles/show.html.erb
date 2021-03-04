@@ -11,12 +11,31 @@
     <h5>内容：<%= @trouble.content %></h5>
   </div>
   
+  <!--↓コメント一覧↓-->
   <div class="comment-list">
     <% @post_comments.each do |post_comment|%>
       <p>ユーザ名：<%= post_comment.user.name%></p>
       <p>コメント内容：<%= post_comment.comment %></p>
+      <!--↓いいね欄↓-->
+      <% if current_user.id != @trouble.user_id && current_user.id != post_comment.user_id %>
+        <% if post_comment.liked_by?(current_user) %>
+        
+          <%= link_to post_comment_likes_path(post_comment), method: :delete do %>
+            いいね済み
+          <% end %>
+          
+        <% else %>
+        
+          <%= link_to post_comment_likes_path(post_comment), method: :post do%>
+            いいねする
+          <% end %>
+          
+        <% end %>
+      <% end %>
+      <!--↑いいね欄↑-->
     <% end %>
   </div>
+  <!--↑コメント一覧↑-->
   
   
   <!--↓コメントフォーム↓-->
