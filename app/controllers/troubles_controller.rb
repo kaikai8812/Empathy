@@ -26,6 +26,8 @@ class TroublesController < ApplicationController
 
   def show
     @trouble = Trouble.find(params[:id])
+    @post_comment = PostComment.new
+    @post_comments = @trouble.post_comments.all
   end
 
   def edit

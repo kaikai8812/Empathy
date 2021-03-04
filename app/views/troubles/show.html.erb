@@ -8,9 +8,26 @@
   <div class="host-image">ユーザイメージ</div>　 <!-- 後で、ユーザーのイメージを入れる-->
   
   <div class="trouble-content">
-    <h5><%= @trouble.content %></h5>
+    <h5>内容：<%= @trouble.content %></h5>
   </div>
   
+  <div class="comment-list">
+    <% @post_comments.each do |post_comment|%>
+      <p>ユーザ名：<%= post_comment.user.name%></p>
+      <p>コメント内容：<%= post_comment.comment %></p>
+    <% end %>
+  </div>
+  
+  
+  <!--↓コメントフォーム↓-->
+  <div class="new-comment">
+    <%= form_with(model: [@trouble, @post_comment], local: true) do |f| %>
+      <%= f.text_area :comment, placeholder: "コメント入力" %>
+      <%= f.hidden_field :trouble_id, value: @trouble.id %>
+      <%= f.submit "コメントを送信" %>
+    <% end %>
+  </div>
+  <!--↑コメントフォーム↑-->
   
 </div>
 
