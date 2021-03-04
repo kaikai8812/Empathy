@@ -30,6 +30,9 @@ https://docs.google.com/spreadsheets/d/1ux_vSvm1Izjw2dqCJcmCqtSYehtJ2Gbj/edit#gi
 ### アプリケーション詳細設計書
 https://docs.google.com/spreadsheets/d/1rYAr8i5oSCKbiv550_3JvXrDTVDXDZ-Q/edit#gid=319211397
 
+###WBS
+https://docs.google.com/spreadsheets/d/1TtEmjHidcECqrtikZknzEB9VBktoGCCXvHIS1SK5NNc/edit#gid=977420151
+
 
 ## 開発環境
 - OS：Linux(CentOS)
