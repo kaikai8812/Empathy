@@ -6,4 +6,9 @@ class User < ApplicationRecord
          
   attachment :profile_image  #プロフィール画像設定
   
+  #アソシエーション関係
+  has_many :troubles, dependent: :destroy
+  
+  
+  
 end

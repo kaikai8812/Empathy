@@ -1,6 +1,13 @@
 class TroublesController < ApplicationController
+  
   def index
+    @troubles = Trouble.all
   end
+  
+  def my_index
+    @troubles = current_user.troubles
+  end
+  
 
   def new
     @trouble = Trouble.new

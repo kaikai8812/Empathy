@@ -1,0 +1,6 @@
+<h1>自分の悩み一覧(仮作成)</h1>
+
+<% @troubles.each do |trouble|%>
+  <%= link_to trouble.title, trouble_path(trouble.id)  %>
+<% end %>
+

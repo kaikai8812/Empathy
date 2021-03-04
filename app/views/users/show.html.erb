@@ -5,5 +5,5 @@
 <p>プロフィール画像: <%= attachment_image_tag @user, :profile_image,format: 'jpeg', fallback: "no_image.jpg", size:"100x100" %></p>
 
 <%= link_to "ユーザ情報編集画面へ", edit_users_path %>
+<%= link_to "自分の悩み一覧", my_trouble_path%>
 <p>自分のコメント一覧</p>
-<p>自分の悩み一覧</p>
