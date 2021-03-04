@@ -17,23 +17,27 @@
   <!--↓コメント一覧↓-->
   <div class="comment-list">
     <% @post_comments.each do |post_comment|%>
-      <p>ユーザ名：<%= post_comment.user.name%></p>
-      <p>コメント内容：<%= post_comment.comment %></p>
-      <!--↓いいね欄↓-->
-      <% if current_user.id != @trouble.user_id %>
-      <div class="comment-like-area">
-        <% if post_comment.liked_by?(current_user) %>
-          <%= link_to post_comment_likes_path(post_comment), method: :delete do %>
-            いいね済み
-          <% end %>
-        <% else %>
-          <%= link_to post_comment_likes_path(post_comment), method: :post do%>
-            いいねする
-          <% end %>
-        <% end %>
+      <% if current_user == @trouble.user && post_comment.is_displayed == false%>
+      <%else%>
+        <p>ユーザ名：<%= post_comment.user.name%></p>
+        <p>コメント内容：<%= post_comment.comment %></p>
+        <p>表示ステータス: <%= post_comment.is_displayed %></p>
       <% end %>
+        <!--↓いいね欄↓-->
+        <% if current_user.id != @trouble.user_id %>
+        <div class="comment-like-area">
+          <% if post_comment.liked_by?(current_user) %>
+            <%= link_to post_comment_likes_path(post_comment), method: :delete do %>
+              <p>いいね済み いいね数：<%= post_comment.likes.count %></p>
+            <% end %>
+          <% else %>
+            <%= link_to post_comment_likes_path(post_comment), method: :post do%>
+              <p>いいねする いいね数：<%= post_comment.likes.count %></p>
+            <% end %>
+          <% end %>
+        </div>
+        <% end %>
       <!--↑いいね欄↑-->
-      </div>
     <% end %>
       
   </div>
@@ -42,10 +46,12 @@
   
   <!--↓コメントフォーム↓-->
   <div class="new-comment">
-    <%= form_with(model: [@trouble, @post_comment], local: true) do |f| %>
-      <%= f.text_area :comment, placeholder: "コメント入力" %>
-      <%= f.hidden_field :trouble_id, value: @trouble.id %>
-      <%= f.submit "コメントを送信" %>
+    <% if current_user.id != @trouble.user_id %>
+      <%= form_with(model: [@trouble, @post_comment], local: true) do |f| %>
+        <%= f.text_area :comment, placeholder: "コメント入力" %>
+        <%= f.hidden_field :trouble_id, value: @trouble.id %>
+        <%= f.submit "コメントを送信" %>
+      <% end %>
     <% end %>
   </div>
   <!--↑コメントフォーム↑-->
