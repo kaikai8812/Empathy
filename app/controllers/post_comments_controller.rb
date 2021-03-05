@@ -12,8 +12,20 @@ class PostCommentsController < ApplicationController
 
   def update
     @post_comment = PostComment.find(params[:id])
-    @post_comment.update(is_thanked: true)
-    binding.pry
+    if @post_comment.is_thanked == false
+      @post_comment.update(is_thanked: true)
+      # ↓チャット機能の記述
+      #新規ルーム作成
+      @room = Room.new
+      @room.post_comment_id = @post_comment.id
+      @room.save
+      #Entryに、感謝したユーザーと、コメントしたユーザーの情報を格納
+      Entry.create(user_id: current_user.id, room_id: @room.id)
+      Entry.create(user_id: @post_comment.user_id, room_id: @room.id)
+    elsif @post_comment.is_thanked == true
+      @post_comment.update(is_thanked: false)
+    end
+    # binding.pry
     redirect_to request.referer
   end
   

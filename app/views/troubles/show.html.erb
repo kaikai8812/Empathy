@@ -24,7 +24,7 @@
           <% if post_comment.is_thanked == false %>
             <%= link_to "感謝する",trouble_post_comment_path(@trouble, post_comment), method: :patch %>
           <% else %>
-            感謝済み
+            <%= link_to "感謝やめる",trouble_post_comment_path(@trouble, post_comment), method: :patch %>
           <% end %>
          </div>
         <!--↑感謝ボタン記述↑-->
@@ -34,10 +34,10 @@
       <%else%>   <!--自分の投稿ではない時のコメントは、全て表示させる。-->
         <p>ユーザ名：<%= post_comment.user.name%></p>
         <p>コメント内容：<%= post_comment.comment %></p>
-        <p>表示ステータス: <%= post_comment.is_displayed %></p>
+        <p>表示ステータス: <%= post_comment.is_displayed %></p> 
       <% end %>
       
-        <% if current_user.id != @trouble.user_id %>
+        <% if current_user.id != @trouble.user_id %>  <!--自分の投稿ではない時のコメントは、全て表示させる。-->
         <!--↓いいね欄↓-->
         <div class="comment-like-area">
           <% if post_comment.liked_by?(current_user) %>
@@ -51,8 +51,14 @@
           <% end %>
         </div>
         <!--↑いいね欄↑-->
-       
-        <% end %>
+       <% end %>
+       <!--↓チャットエリア↓-->
+       <% if post_comment.is_thanked == true%>    
+         <% if post_comment.chat_member?(current_user)%>
+         表示あり
+         <% end%>
+       <% end %>
+       <!--↑チャットエリア↑-->
     <% end %>
       
   </div>
