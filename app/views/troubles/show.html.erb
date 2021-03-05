@@ -16,9 +16,22 @@
   
   <!--↓コメント一覧↓-->
   <div class="comment-list">
-    <% @post_comments.each do |post_comment|%>
-      <% if current_user == @trouble.user && post_comment.is_displayed == false%>
-      <%else%>
+    <% @post_comments.each do |post_comment|%>  
+      <% if current_user == @trouble.user && post_comment.is_displayed == false%>　<!--　ログインユーザーの投稿かつ、表示不可のコメントは表示させない。-->
+      <% elsif current_user == @trouble.user && post_comment.is_displayed == true %>  <!-- ログインユーザーの投稿で、表示可になったものは、コメント内容と、感謝ボタンを表示する-->
+        <!--↓感謝ボタン記述↓-->
+         <div class="comment-thanks-area">
+          <% if post_comment.is_thanked == false %>
+            <%= link_to "感謝する",trouble_post_comment_path(@trouble, post_comment), method: :patch %>
+          <% else %>
+            感謝済み
+          <% end %>
+         </div>
+        <!--↑感謝ボタン記述↑-->
+        <p>ユーザ名：<%= post_comment.user.name%></p>
+        <p>コメント内容：<%= post_comment.comment %></p>
+        <p>表示ステータス: <%= post_comment.is_displayed %></p>
+      <%else%>   <!--自分の投稿ではない時のコメントは、全て表示させる。-->
         <p>ユーザ名：<%= post_comment.user.name%></p>
         <p>コメント内容：<%= post_comment.comment %></p>
         <p>表示ステータス: <%= post_comment.is_displayed %></p>
@@ -38,16 +51,7 @@
           <% end %>
         </div>
         <!--↑いいね欄↑-->
-        <% elsif current_user.id == @trouble.user_id %>
-        <!--↓感謝ボタン記述↓-->
-         <div class="comment-thanks-area">
-          <% if post_comment.is_thanked == false %>
-            <%= link_to "感謝する",trouble_post_comment_path(@trouble, post_comment), method: :patch %>
-          <% else %>
-            感謝済み
-          <% end %>
-         </div>
-        <!--↑感謝ボタン記述↑-->
+       
         <% end %>
     <% end %>
       
