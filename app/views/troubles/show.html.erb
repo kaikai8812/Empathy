@@ -56,14 +56,23 @@
        <% end %>
        <!--↓チャットエリア↓-->
        <% if post_comment.is_thanked == true && (current_user.id == @trouble.user_id || current_user.id ==post_comment.user_id) %>     <!--チャット機能を使えるかの条件文-->
+         
          <!--↓チャット送信フォーム↓-->
-         チャット送信フォーム
-           <%= form_with model: @chat, local:true do |f| %>
+         <div class="chat-form">
+           チャット送信フォーム
+           <%= form_with model: @chat_message, url: chat_messages_path, local:true do |f| %>
              <%= f.text_area :message, placeholder: "チャット入力" %>
+             <%= f.hidden_field :room_id, value: post_comment.room.id %>
              <%= f.submit "チャットを送信" %>
            <% end %>
+         </div>
          <!--↑チャット送信フォーム↑-->
-      
+        <% post_comment.room.chat_messages.each do |chat_message| %>
+        
+        名前：<%= chat_message.user.name %> :
+        <%= chat_message.message %><br>
+          
+        <% end %>
        <% end %>
        <!--↑チャットエリア↑-->
     <% end %>

@@ -29,7 +29,9 @@ class TroublesController < ApplicationController
     @post_comment = PostComment.new
     @post_comments = @trouble.post_comments.all
     # ↓チャット関係
-    @chat_messege = ChatMessage.new
+    @chat_message = ChatMessage.new
+    
+    
     
   end
 

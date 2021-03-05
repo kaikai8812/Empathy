@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   post 'post_comments/:post_comment_id/likes' => 'likes#create', as: :post_comment_likes
   delete 'post_comments/:post_comment_id/likes' => 'likes#destroy'
   
+  resource :chat_messages, only: [:create]
+  
   
   
   devise_for :users

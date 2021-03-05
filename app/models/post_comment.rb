@@ -21,6 +21,9 @@ class PostComment < ApplicationRecord
   # end
   
   
+  def chat_message(user)
+    self.room.chat_messages.where(user_id: user.id)
+  end
   
   #いいね数に応じて、コメントの表示ステータスをtrueにするメソッド。
   def comment_display_true
