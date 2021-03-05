@@ -28,6 +28,9 @@ class TroublesController < ApplicationController
     @trouble = Trouble.find(params[:id])
     @post_comment = PostComment.new
     @post_comments = @trouble.post_comments.all
+    # ↓チャット関係
+    @chat_messege = ChatMessage.new
+    
   end
 
   def edit

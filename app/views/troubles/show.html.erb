@@ -31,10 +31,12 @@
         <p>ユーザ名：<%= post_comment.user.name%></p>
         <p>コメント内容：<%= post_comment.comment %></p>
         <p>表示ステータス: <%= post_comment.is_displayed %></p>
+        <p>感謝ステータス: <%= post_comment.is_thanked %></p>
       <%else%>   <!--自分の投稿ではない時のコメントは、全て表示させる。-->
         <p>ユーザ名：<%= post_comment.user.name%></p>
         <p>コメント内容：<%= post_comment.comment %></p>
         <p>表示ステータス: <%= post_comment.is_displayed %></p> 
+        <p>感謝ステータス: <%= post_comment.is_thanked %></p>
       <% end %>
       
         <% if current_user.id != @trouble.user_id %>  <!--自分の投稿ではない時のコメントは、全て表示させる。-->
@@ -53,10 +55,15 @@
         <!--↑いいね欄↑-->
        <% end %>
        <!--↓チャットエリア↓-->
-       <% if post_comment.is_thanked == true%>    
-         <% if post_comment.chat_member?(current_user)%>
-         表示あり
-         <% end%>
+       <% if post_comment.is_thanked == true && (current_user.id == @trouble.user_id || current_user.id ==post_comment.user_id) %>     <!--チャット機能を使えるかの条件文-->
+         <!--↓チャット送信フォーム↓-->
+         チャット送信フォーム
+           <%= form_with model: @chat, local:true do |f| %>
+             <%= f.text_area :message, placeholder: "チャット入力" %>
+             <%= f.submit "チャットを送信" %>
+           <% end %>
+         <!--↑チャット送信フォーム↑-->
+      
        <% end %>
        <!--↑チャットエリア↑-->
     <% end %>

@@ -14,11 +14,11 @@ class PostComment < ApplicationRecord
   end
   
   #チャットを表示させるユーザーかを判断するメソッド
-  #is_thankedがtrueの場合のみ、このメソッドを反映させたい
-  def chat_member?(user)
-    room.entries.where(user_id: user.id).exists?
+  #使ってません　一応残しています。
+  # def chat_member?(user)
+  #   room.entries.where(user_id: user.id).exists?
     # binding.pry
-  end
+  # end
   
   
   
