@@ -36,9 +36,16 @@ class TroublesController < ApplicationController
   end
 
   def edit
+    @trouble = Trouble.find(params[:id])
   end
 
   def update
+    @trouble = Trouble.find(params[:id])
+    if @trouble.update(trouble_params)
+      redirect_to trouble_path(@trouble)
+    else
+      render 'edit'
+    end
   end
 
   def search

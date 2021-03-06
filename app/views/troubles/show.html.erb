@@ -10,9 +10,14 @@
   
   <div class="host-image">ユーザイメージ</div>　 <!-- 後で、ユーザーのイメージを入れる-->
   
+  <div class="trouble-edit-link">
+    <%= link_to "編集画面へ", edit_trouble_path(@trouble) %>  
+  </div>
+  
   <div class="trouble-content">
     <h5>内容：<%= @trouble.content %></h5>
   </div>
+  
   
   <!--↓コメント一覧↓-->
   <div class="comment-list">
@@ -22,9 +27,9 @@
         <!--↓感謝ボタン記述↓-->
          <div class="comment-thanks-area">
           <% if post_comment.is_thanked == false %>
-            <%= link_to "感謝する",trouble_post_comment_path(@trouble, post_comment), method: :patch %>
+            <%= link_to "感謝する",trouble_post_comment_path(@trouble, post_comment), method: :patch, data: { confirm: "感謝します。よろしいですか？" } %>
           <% else %>
-            <%= link_to "感謝やめる",trouble_post_comment_path(@trouble, post_comment), method: :patch %>
+            感謝済みです。
           <% end %>
          </div>
         <!--↑感謝ボタン記述↑-->
@@ -67,12 +72,13 @@
            <% end %>
          </div>
          <!--↑チャット送信フォーム↑-->
+         <!--↓チャット表示エリア↓-->
         <% post_comment.room.chat_messages.each do |chat_message| %>
-        
-        名前：<%= chat_message.user.name %> :
-        <%= chat_message.message %><br>
-          
+          名前：<%= chat_message.user.name %> :
+          <%= chat_message.message %><br>
         <% end %>
+         <!--↑チャット表示エリア↑-->
+        
        <% end %>
        <!--↑チャットエリア↑-->
     <% end %>
