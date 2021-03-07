@@ -1,6 +1,12 @@
 <h1>自分の悩み一覧(仮作成)</h1>
 
-<% @troubles.each do |trouble|%>
-  <%= link_to trouble.title, trouble_path(trouble.id)  %>
-<% end %>
+<div class="my-trouble-index">
+  <% @troubles.each do |trouble|%>
+    <p>タイトル：<%= link_to trouble.title, trouble_path(trouble) %></p>
+    <p>投稿者: <%= trouble.user.name %></p>
+    <p>コメント数: <%= trouble.post_comments.count%></p>
+    <p>解決ステータス: <%= trouble.is_solved %></p>
+    
+  <% end %>
+</div>
 

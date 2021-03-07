@@ -1,7 +1,13 @@
 class PostCommentsController < ApplicationController
-  def index
-  end
+#  def index　　#自分のコメント一覧作成のため。
+#    @post_comments = current_user.post_comments
+#    binding.pry
+#  end
 
+  def index
+    @post_comments = current_user.post_comments
+  end
+  
   def create
     @post_comment = current_user.post_comments.new(post_comment_params)
     # binding.pry
