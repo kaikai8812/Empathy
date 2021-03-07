@@ -1,2 +1,9 @@
-<h1>PostComments#index</h1>
-<p>Find me in app/views/post_comments/index.html.erb</p>
+自分のコメント一覧画面
+
+<div class="my-comment-list">
+  <% @post_comments.each do |comment| %>
+    <p>悩み名: <%= link_to comment.trouble.title, trouble_path(comment.trouble) %></p>
+    <p>コメント内容: <%= comment.comment.truncate(10) %></p>
+    <p>いいね数: <%= comment.likes.count %>いいね</p>
+  <% end %>
+</div>

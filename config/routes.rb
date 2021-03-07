@@ -6,9 +6,14 @@ Rails.application.routes.draw do
   
   #悩みの解決ステータス更新のためのアクション
   patch 'troubles/:id/status' => 'troubles#status_update', as: :trouble_status
-  resources :troubles do   #trounles, まだsearchは入れていません。
-    resources :post_comments, only: [:create, :update, :index]
+  resources :post_comments, only: [:index]
+  resources :troubles do
+    collection do
+      get 'search'
+    end
+    resources :post_comments, only: [:create, :update]
   end
+  #get 'post_comments' => 'post_comments#index', as: :post_comments
   
   post 'post_comments/:post_comment_id/likes' => 'likes#create', as: :post_comment_likes
   delete 'post_comments/:post_comment_id/likes' => 'likes#destroy'

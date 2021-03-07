@@ -1,5 +1,5 @@
 class TroublesController < ApplicationController
-  #before_actionで、troubleが解決済みだったら、コメントができない、チャット欄の封鎖の処理も必要だね！！
+before_action :set_q, only: [:index, :search]
   
   def index
     @troubles = Trouble.all.where.not(user_id: current_user.id)  #自分の投稿以外を表示させる、
@@ -55,6 +55,7 @@ class TroublesController < ApplicationController
     redirect_to trouble_path(@trouble)
   end
   def search
+    @results = @q.result.where.not(user_id: current_user.id)
   end
 
   def destroy
@@ -64,6 +65,10 @@ class TroublesController < ApplicationController
   
   def trouble_params
     params.require(:trouble).permit(:title, :content, :category_id)
+  end
+  
+  def set_q
+    @q = Trouble.ransack(params[:q])
   end
   
 end

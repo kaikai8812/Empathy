@@ -1,5 +1,20 @@
 <h1>悩み一覧</h1>
 
+<div class="search-area">
+  <%= search_form_for @q, url: search_troubles_path do |f| %>
+    <%= f.label :title_cont, "悩みのタイトル" %>
+    <%= f.text_field :title_cont %>
+    <%= f.label :category, "カテゴリー" %>
+    <%= f.collection_select :category_id_eq, Category.all, :id, :name, {prompt: "全て"} %>
+    <%= f.label :is_solved, "ステータス" %>
+    <%= f.radio_button :is_solved_eq, ''%>指定しない
+    <%= f.radio_button :is_solved_eq, 'true'%>解決済み
+    <%= f.radio_button :is_solved_eq, 'false'%>未解決
+    <br>
+    <%= f.submit '検索'%>
+  <% end %>
+</div>
+
 <div class="trouble-index">
   <% @troubles.each do |trouble|%>
     <p>タイトル：<%= link_to trouble.title, trouble_path(trouble) %></p>
