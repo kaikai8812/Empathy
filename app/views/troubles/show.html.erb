@@ -3,16 +3,30 @@
 <% end %>
 <h1>悩み詳細画面</h1>
 <div class="trouble-main">
+  <!--↓解決ステータス関係-->
+  <div class="solved-select-area">
+    <% if current_user == @trouble.user && @trouble.is_solved == false %>
+      <%= link_to "解決済みにする", trouble_status_path(@trouble), method: :patch %>
+    <% elsif current_user == @trouble.user && @trouble.is_solved == true %>
+    解決済み
+    <% end %>
+  </div>
+  <!--↑解決ステータス関係-->
   
   <div class="trouble-title">
     <p>タイトル: <%= @trouble.title %></p>
   </div>
   
-  <div class="host-image">ユーザイメージ</div>　 <!-- 後で、ユーザーのイメージを入れる-->
+  <div class="host-image">投稿者名 <%= @trouble.user.name%></div>　 <!-- 後で、ユーザーのイメージを入れる-->
+  
+  <div class="trouble-edit-link">
+    <%= link_to "編集画面へ", edit_trouble_path(@trouble) %>  
+  </div>
   
   <div class="trouble-content">
     <h5>内容：<%= @trouble.content %></h5>
   </div>
+  
   
   <!--↓コメント一覧↓-->
   <div class="comment-list">
@@ -22,22 +36,24 @@
         <!--↓感謝ボタン記述↓-->
          <div class="comment-thanks-area">
           <% if post_comment.is_thanked == false %>
-            <%= link_to "感謝する",trouble_post_comment_path(@trouble, post_comment), method: :patch %>
+            <%= link_to "感謝する",trouble_post_comment_path(@trouble, post_comment), method: :patch, data: { confirm: "感謝します。よろしいですか？" } %>
           <% else %>
-            感謝済み
+            感謝済みです。
           <% end %>
          </div>
         <!--↑感謝ボタン記述↑-->
         <p>ユーザ名：<%= post_comment.user.name%></p>
         <p>コメント内容：<%= post_comment.comment %></p>
         <p>表示ステータス: <%= post_comment.is_displayed %></p>
+        <p>感謝ステータス: <%= post_comment.is_thanked %></p>
       <%else%>   <!--自分の投稿ではない時のコメントは、全て表示させる。-->
         <p>ユーザ名：<%= post_comment.user.name%></p>
         <p>コメント内容：<%= post_comment.comment %></p>
-        <p>表示ステータス: <%= post_comment.is_displayed %></p>
+        <p>表示ステータス: <%= post_comment.is_displayed %></p> 
+        <p>感謝ステータス: <%= post_comment.is_thanked %></p>
       <% end %>
       
-        <% if current_user.id != @trouble.user_id %>
+        <% if current_user.id != @trouble.user_id %>  <!--自分の投稿ではない時のコメントは、全て表示させる。-->
         <!--↓いいね欄↓-->
         <div class="comment-like-area">
           <% if post_comment.liked_by?(current_user) %>
@@ -51,8 +67,29 @@
           <% end %>
         </div>
         <!--↑いいね欄↑-->
-       
+       <% end %>
+       <!--↓チャットエリア↓-->
+       <% if post_comment.is_thanked == true && (current_user.id == @trouble.user_id || current_user.id ==post_comment.user_id) %>     <!--チャット機能を使えるかの条件文-->
+         
+         <!--↓チャット送信フォーム↓-->
+         <div class="chat-form">
+           チャット送信フォーム
+           <%= form_with model: @chat_message, url: chat_messages_path, local:true do |f| %>
+             <%= f.text_area :message, placeholder: "チャット入力" %>
+             <%= f.hidden_field :room_id, value: post_comment.room.id %>
+             <%= f.submit "チャットを送信" %>
+           <% end %>
+         </div>
+         <!--↑チャット送信フォーム↑-->
+         <!--↓チャット表示エリア↓-->
+        <% post_comment.room.chat_messages.each do |chat_message| %>
+          名前：<%= chat_message.user.name %> :
+          <%= chat_message.message %><br>
         <% end %>
+         <!--↑チャット表示エリア↑-->
+        
+       <% end %>
+       <!--↑チャットエリア↑-->
     <% end %>
       
   </div>
@@ -61,7 +98,7 @@
   
   <!--↓コメントフォーム↓-->
   <div class="new-comment">
-    <% if current_user.id != @trouble.user_id %>
+    <% if current_user.id != @trouble.user_id && @trouble.is_solved == false %>    <!--↓解決済みになったら、コメントが記述できない条件設定↓-->
       <%= form_with(model: [@trouble, @post_comment], local: true) do |f| %>
         <%= f.text_area :comment, placeholder: "コメント入力" %>
         <%= f.hidden_field :trouble_id, value: @trouble.id %>

@@ -1,2 +1,27 @@
-<h1>Troubles#edit</h1>
-<p>Find me in app/views/troubles/edit.html.erb</p>
+<h1>悩み編集画面</h1>
+
+<div class="trouble-form">
+  <%= form_with model: @trouble, local:true do |f| %>
+    
+    <div class="title-form">
+      <%= f.label :タイトル%>
+      <%= f.text_field :title%>
+    </div>
+    
+    <div class="content-form">
+      <%= f.label :内容%>
+      <%= f.text_area :content%>
+    </div>
+    
+    <div class="category-form">
+      <%= f.label :カテゴリー%>
+      <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "カテゴリー選択"} %>
+      
+    </div>
+    
+    <div class="submit-form">
+      <%= f.submit "変更する" %>
+    </div>
+    
+  <% end %>
+</div>

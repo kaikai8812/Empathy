@@ -2,8 +2,10 @@
 
 <div class="trouble-index">
   <% @troubles.each do |trouble|%>
+    <p>タイトル：<%= link_to trouble.title, trouble_path(trouble) %></p>
     <p>投稿者: <%= trouble.user.name %></p>
-    <%= link_to trouble.title, trouble_path(trouble) %>
+    <p>コメント数: <%= trouble.post_comments.count%></p>
+    <p>解決ステータス: <%= trouble.is_solved %></p>
     
   <% end %>
 </div>

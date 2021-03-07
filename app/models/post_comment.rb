@@ -6,10 +6,23 @@ class PostComment < ApplicationRecord
   belongs_to :user
   belongs_to :trouble
   has_many :likes, dependent: :destroy
+  has_one :room
   
   #いいね済みか判断するメソッド  true => いいねあり false => いいねなし
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
+  end
+  
+  #チャットを表示させるユーザーかを判断するメソッド
+  #使ってません　一応残しています。
+  # def chat_member?(user)
+  #   room.entries.where(user_id: user.id).exists?
+    # binding.pry
+  # end
+  
+  
+  def chat_message(user)
+    self.room.chat_messages.where(user_id: user.id)
   end
   
   #いいね数に応じて、コメントの表示ステータスをtrueにするメソッド。
@@ -25,5 +38,6 @@ class PostComment < ApplicationRecord
       self.update_attributes(is_displayed: false)
     end
   end
+
   
 end
