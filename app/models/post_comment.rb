@@ -38,5 +38,6 @@ class PostComment < ApplicationRecord
       self.update_attributes(is_displayed: false)
     end
   end
+
   
 end

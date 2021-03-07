@@ -1,7 +1,8 @@
 class TroublesController < ApplicationController
+  #before_actionで、troubleが解決済みだったら、コメントができない、チャット欄の封鎖の処理も必要だね！！
   
   def index
-    @troubles = Trouble.all
+    @troubles = Trouble.all.where.not(user_id: current_user.id)  #自分の投稿以外を表示させる、
   end
   
   def my_index
@@ -47,7 +48,12 @@ class TroublesController < ApplicationController
       render 'edit'
     end
   end
-
+  
+  def status_update
+    @trouble = Trouble.find(params[:id])
+    @trouble.update(is_solved: true)
+    redirect_to trouble_path(@trouble)
+  end
   def search
   end
 
