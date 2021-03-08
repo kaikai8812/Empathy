@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-
   root to: 'homes#top'
   get 'users/my_troubles' => 'troubles#my_index', as: :my_trouble   #ログインユーザの悩み一覧
   resource :users, only: [:show, :edit, :update] 
@@ -19,6 +18,8 @@ Rails.application.routes.draw do
   delete 'post_comments/:post_comment_id/likes' => 'likes#destroy'
   
   resource :chat_messages, only: [:create]
+  
+  resources :notifications, only: [:index]
   
   
   

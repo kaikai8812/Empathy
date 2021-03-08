@@ -24,7 +24,7 @@ class PostComment < ApplicationRecord
         action: 'like'
         )
         # binding.pry
-      # notification.save
+      notification.save
     end
   end
   
@@ -36,7 +36,7 @@ class PostComment < ApplicationRecord
       action: 'comment'
       )
     # binding.pry
-    # notification.save
+    notification.save
   end
   
   def chat_message(user)
