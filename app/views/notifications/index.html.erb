@@ -1,0 +1,31 @@
+
+<h1>通知一覧</h1>
+
+<% if @notifications.exists? %>
+
+  <% @notifications.each do |notification| %>
+  <div class="notification-text">
+    <%= notification.visitor.name %>さんから
+    
+    <% case notification.action %>
+    <% when 'like' then %>
+      あなたの
+      <%= notification.post_comment.trouble.title %>
+      へのコメントに、いいねがあります。
+    <% when 'comment' then %>
+      <%= notification.post_comment.trouble.title %>
+      にコメントが届いています。
+    <% when 'chat' then %>
+      チャットメッセージが届いています。
+    <% end %>
+    
+  </div>
+    <%= time_ago_in_words(notification.created_at).upcase + "前" %>
+  <% end %>
+
+<% else %>
+
+ <p>通知はありません。</p>
+
+<% end %>
+

@@ -7,19 +7,37 @@ class PostComment < ApplicationRecord
   belongs_to :trouble
   has_many :likes, dependent: :destroy
   has_one :room
+  has_many :notifications, dependent: :destroy
   
   #いいね済みか判断するメソッド  true => いいねあり false => いいねなし
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end
   
-  #チャットを表示させるユーザーかを判断するメソッド
-  #使ってません　一応残しています。
-  # def chat_member?(user)
-  #   room.entries.where(user_id: user.id).exists?
-    # binding.pry
-  # end
+  #いいね通知の作成メソッド
+  def create_notification_like!(current_user)
+    temp = Notification.where(["visitor_id = ? and visited_id = ? and post_comment_id = ? and action = ?", current_user.id, user_id, id, 'like' ])
+    if temp.blank?
+      notification = current_user.active_notifications.new(
+        visited_id: user_id,
+        post_comment_id: id,
+        action: 'like'
+        )
+        # binding.pry
+      notification.save
+    end
+  end
   
+  #コメント投稿の通知メソッド
+  def create_notification_comment!(current_user, visited_id)
+    notification = current_user.active_notifications.new(
+      visited_id: visited_id,
+      post_comment_id: id,
+      action: 'comment'
+      )
+    # binding.pry
+    notification.save
+  end
   
   def chat_message(user)
     self.room.chat_messages.where(user_id: user.id)

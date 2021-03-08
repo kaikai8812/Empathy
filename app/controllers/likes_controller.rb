@@ -5,6 +5,7 @@ class LikesController < ApplicationController
       @like = current_user.likes.new(post_comment_id: @post_comment.id)
       @like.save
       @post_comment.comment_display_true  #インスタンスメソッド
+      @post_comment.create_notification_like!(current_user) #通知メソッド
       redirect_to request.referer
     else
       flash[:likes] = '自分のコメントにはいいねできません。'
