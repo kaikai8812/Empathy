@@ -1,33 +1,14 @@
-<% if flash[:likes] %>
-  <p><%= flash[:likes] %></p>
-<% end %>
-<h1>悩み詳細画面</h1>
-<div class="trouble-main">
-  <!--↓解決ステータス関係-->
-  <div class="solved-select-area">
-    <% if current_user == @trouble.user && @trouble.is_solved == false %>
-      <%= link_to "解決済みにする", trouble_status_path(@trouble), method: :patch %>
-    <% elsif current_user == @trouble.user && @trouble.is_solved == true %>
-    解決済み
-    <% end %>
+
+<div class="container">
+  <div class = "row trouble-top-area">
+    <%= render 'troubles/top_area', trouble: @trouble %>
   </div>
-  <!--↑解決ステータス関係-->
+</div>
+
   
-  <div class="trouble-title">
-    <p>タイトル: <%= @trouble.title %></p>
-  </div>
-  
-  <div class="host-image">投稿者名 <%= @trouble.user.name%></div>　 <!-- 後で、ユーザーのイメージを入れる-->
-  
-  <div class="trouble-edit-link">
-    <%= link_to "編集画面へ", edit_trouble_path(@trouble) %>  
-  </div>
-  
-  <div class="trouble-content">
-    <h5>内容：<%= @trouble.content %></h5>
-  </div>
-  
-  
+  <!--<div class="trouble-content">-->
+  <!--  <h5>内容：<%= @trouble.content %></h5>-->
+  <!--</div>-->
   <!--↓コメント一覧↓-->
   <div class="comment-list">
     <% @post_comments.each do |post_comment|%>  
@@ -106,7 +87,10 @@
       <% end %>
     <% end %>
   </div>
+
   <!--↑コメントフォーム↑-->
   
-</div>
+
+
+
 

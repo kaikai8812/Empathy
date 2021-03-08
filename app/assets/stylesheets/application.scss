@@ -17,8 +17,24 @@
    @import "font-awesome";
 
 .fa-circle {
-  position: absolute;
-  padding-left: 1rem;
-  padding-top: 0rem;
   color: red;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+// 悩み詳細画面関係
+
+.title-area { 
+  height: 100px;
+}
+
+.trouble-title strong {
+  font-size: 30px;
+  line-height: 100px;
+}
+
+.solved-select-area {
+  line-height: 60px;
 }
