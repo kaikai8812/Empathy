@@ -10,28 +10,55 @@
 
   <body>
     <!--↓ヘッダー↓-->
-    <header class="d-flex">
-      <div class="header-title m-3">
+    <header>
+      <nav class="navbar navbar-expand-lg bg-light">
         <%= link_to "Empathy", root_path, class: "h1" %>
-      </div>
-      <div class="header-trouble-list m-3">
-        <%= link_to "悩み一覧", troubles_path %>
-      </div>
-      <div class="header-trouble-new m-3">
-        <%= link_to "悩み投稿画面", new_trouble_path %>
-      </div>
-      <div class="header-notification m-3">
-        <%= link_to "通知", notifications_path %>
-      </div>
-      <div class="header-mypage m-3">
-        <%= link_to "マイページ", users_path %>
-      </div>
-      
-      <% if user_signed_in? %>
-        ユーザ名<%= current_user.name %>（目印）
-      <% else%>
-        ログインしてない（目印）
-      <% end %>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <%= link_to "悩み一覧", troubles_path, class: "nav-link" %>
+            </li>
+            
+          </ul> 
+          <% if user_signed_in? %>
+            <ul class="navbar-nav ml-auto">
+                <li class = "nav-link">
+                <%= link_to notifications_path do %>
+                 <span class="fa-stack">
+                  <i class="far fa-bell fa-2x fa-stack-2x "></i>
+                   <% if unchecked_notifications.any? %>
+                    <i class="fas fa-circle fa-stack-1x n-circle mt-3 pl-4"></i>
+                   <% end %>
+                 </span>
+                <% end %>
+                </li>
+             
+              <li class="nav-item dropdown ">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <%= attachment_image_tag current_user, :profile_image,format: 'jpeg', fallback: "no_image.jpg", size:"40x40", class: "rounded-circle"  %>
+                </a>
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+                  <%= link_to current_user.name, users_path, class: "dropdown-item" %>
+                  <%= link_to "自分の悩み一覧", my_trouble_path, class: "dropdown-item" %>
+                  <%= link_to "自分のコメント一覧", post_comments_path, class: "dropdown-item" %>
+                  <%= link_to "ログアウト", destroy_user_session_path,method: :delete, class: "dropdown-item" %>
+                </div>
+              </li>
+            </ul>
+          <% else%>
+            <ul class="navbar-nav ml-auto">
+              <%= link_to "ログイン", new_user_session_path, class: "nav-link" %>
+              <%= link_to "新規登録", new_user_registration_path, class: "nav-link" %>
+              
+            </ul>
+          <% end %>
+        </div>
+      </nav>
+     
+
     </header>
     <!--↑ヘッダー↑-->
     

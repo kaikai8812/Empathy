@@ -58,3 +58,4 @@ gem "refile-mini_magick"
 gem "devise"
 gem "ransack"
 gem "rails-i18n", "~> 5.1"
+gem 'font-awesome-sass'
