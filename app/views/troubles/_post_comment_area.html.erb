@@ -1,0 +1,79 @@
+
+  
+    <%  post_comments.each do |post_comment|%> 
+    
+    <!---->
+    <div class="row post-comments-list">
+      
+      <div class="col-md-2 host-image"></div>
+
+       <!----------------------------------------------------------------------------------------->
+        <% if current_user == trouble.user && post_comment.is_displayed == true %>  <!-- 自分の投稿の時、許可コメントに感謝ボタンをつけて表示-->
+  
+         <div class="col-md-8 post-comment-content balloon1-right ">
+          <p><%= post_comment.comment %></p>
+           <div class="comment-thanks-area">
+            <% if post_comment.is_thanked == false %>
+              <%= link_to "感謝する",trouble_post_comment_path( trouble, post_comment), method: :patch, data: { confirm: "感謝します。よろしいですか？" } %>
+            <% else %>
+              感謝済みです。
+            <% end %>
+           </div>
+         </div>
+          <div class="col-md-2 guest-image float-right">
+            <%= attachment_image_tag  post_comment.user, :profile_image,format: 'jpeg', fallback: "no_image.jpg", size:"80x80", class: "rounded-circle float-right"  %>
+          </div>
+          <!--↑感謝ボタン記述↑-->
+        <%elsif current_user != trouble.user%>
+        
+          <div class="col-md-8 post-comment-content balloon1-right">
+            <p><%= post_comment.comment %></p>
+            <div class="comment-like-area">
+              <% if post_comment.liked_by?(current_user) %>
+                <%= link_to post_comment_likes_path(post_comment), method: :delete do %>
+                  <p>いいね済み いいね数：<%= post_comment.likes.count %></p>
+                <% end %>
+              <% else %>
+                <%= link_to post_comment_likes_path(post_comment), method: :post do%>
+                  <p>いいねする いいね数：<%= post_comment.likes.count %></p>
+                <% end %>
+              <% end %>
+            </div>
+          </div>
+            <div class="col-md-2 guest-image float-right">
+              <%= attachment_image_tag  post_comment.user, :profile_image,format: 'jpeg', fallback: "no_image.jpg", size:"80x80", class: "rounded-circle float-right"  %>
+            </div>
+        <% else %>
+        <% end %>
+
+    </div>
+    
+    
+    <div class="row chat-area">
+         <% if post_comment.is_thanked == true && (current_user.id == trouble.user_id || current_user.id ==post_comment.user_id) %>     <!--チャット機能を使えるかの条件文-->
+           
+           <!--↓チャット送信フォーム↓-->
+           <div class="chat-form">
+             チャット送信フォーム
+             <%= form_with model:  chat_message, url: chat_messages_path, local:true do |f| %>
+               <%= f.text_area :message, placeholder: "チャット入力" %>
+               <%= f.hidden_field :room_id, value: post_comment.room.id %>
+               <%= f.submit "チャットを送信" %>
+             <% end %>
+           </div>
+           <!--↑チャット送信フォーム↑-->
+           <!--↓チャット表示エリア↓-->
+          <% post_comment.room.chat_messages.each do |chat_message| %>
+            名前：<%= chat_message.user.name %> :
+            <%= chat_message.message %><br>
+          <% end %>
+           <!--↑チャット表示エリア↑-->
+          
+         <% end %>
+           <!--↑チャットエリア↑-->
+      
+    </div>
+
+    
+    <% end %>
+      

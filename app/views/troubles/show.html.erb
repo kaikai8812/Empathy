@@ -1,81 +1,21 @@
-
-<div class="container">
+<!--タイトル部分-->
+<div class="container border-bottom">
   <div class = "row trouble-top-area">
     <%= render 'troubles/top_area', trouble: @trouble %>
   </div>
 </div>
 
-  
-  <!--<div class="trouble-content">-->
-  <!--  <h5>内容：<%= @trouble.content %></h5>-->
-  <!--</div>-->
-  <!--↓コメント一覧↓-->
-  <div class="comment-list">
-    <% @post_comments.each do |post_comment|%>  
-      <% if current_user == @trouble.user && post_comment.is_displayed == false%>　<!--　ログインユーザーの投稿かつ、表示不可のコメントは表示させない。-->
-      <% elsif current_user == @trouble.user && post_comment.is_displayed == true %>  <!-- ログインユーザーの投稿で、表示可になったものは、コメント内容と、感謝ボタンを表示する-->
-        <!--↓感謝ボタン記述↓-->
-         <div class="comment-thanks-area">
-          <% if post_comment.is_thanked == false %>
-            <%= link_to "感謝する",trouble_post_comment_path(@trouble, post_comment), method: :patch, data: { confirm: "感謝します。よろしいですか？" } %>
-          <% else %>
-            感謝済みです。
-          <% end %>
-         </div>
-        <!--↑感謝ボタン記述↑-->
-        <p>ユーザ名：<%= post_comment.user.name%></p>
-        <p>コメント内容：<%= post_comment.comment %></p>
-        <p>表示ステータス: <%= post_comment.is_displayed %></p>
-        <p>感謝ステータス: <%= post_comment.is_thanked %></p>
-      <%else%>   <!--自分の投稿ではない時のコメントは、全て表示させる。-->
-        <p>ユーザ名：<%= post_comment.user.name%></p>
-        <p>コメント内容：<%= post_comment.comment %></p>
-        <p>表示ステータス: <%= post_comment.is_displayed %></p> 
-        <p>感謝ステータス: <%= post_comment.is_thanked %></p>
-      <% end %>
-      
-        <% if current_user.id != @trouble.user_id %>  <!--自分の投稿ではない時のコメントは、全て表示させる。-->
-        <!--↓いいね欄↓-->
-        <div class="comment-like-area">
-          <% if post_comment.liked_by?(current_user) %>
-            <%= link_to post_comment_likes_path(post_comment), method: :delete do %>
-              <p>いいね済み いいね数：<%= post_comment.likes.count %></p>
-            <% end %>
-          <% else %>
-            <%= link_to post_comment_likes_path(post_comment), method: :post do%>
-              <p>いいねする いいね数：<%= post_comment.likes.count %></p>
-            <% end %>
-          <% end %>
-        </div>
-        <!--↑いいね欄↑-->
-       <% end %>
-       <!--↓チャットエリア↓-->
-       <% if post_comment.is_thanked == true && (current_user.id == @trouble.user_id || current_user.id ==post_comment.user_id) %>     <!--チャット機能を使えるかの条件文-->
-         
-         <!--↓チャット送信フォーム↓-->
-         <div class="chat-form">
-           チャット送信フォーム
-           <%= form_with model: @chat_message, url: chat_messages_path, local:true do |f| %>
-             <%= f.text_area :message, placeholder: "チャット入力" %>
-             <%= f.hidden_field :room_id, value: post_comment.room.id %>
-             <%= f.submit "チャットを送信" %>
-           <% end %>
-         </div>
-         <!--↑チャット送信フォーム↑-->
-         <!--↓チャット表示エリア↓-->
-        <% post_comment.room.chat_messages.each do |chat_message| %>
-          名前：<%= chat_message.user.name %> :
-          <%= chat_message.message %><br>
-        <% end %>
-         <!--↑チャット表示エリア↑-->
-        
-       <% end %>
-       <!--↑チャットエリア↑-->
-    <% end %>
-      
+<!--悩みー内容部分-->
+  <div class="container mt-5">
+    <div class="row trouble-content-area">
+      <%= render 'troubles/content_area', trouble: @trouble %>
+    </div>
   </div>
-  <!--↑コメント一覧↑-->
+  <!--↓コメント一覧↓-->
   
+  <div class="container comment-list">
+    <%= render 'troubles/post_comment_area', post_comments: @post_comments, trouble: @trouble, chat_message: @chat_message%>
+  </div>
   
   <!--↓コメントフォーム↓-->
   <div class="new-comment">

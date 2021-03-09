@@ -24,17 +24,88 @@ body {
   background-color: #f8f9fa;
 }
 
+.container {
+  width: 80%;
+}
+
+
+
 // 悩み詳細画面関係
 
 .title-area { 
-  height: 100px;
+  height: auto;
 }
 
-.trouble-title strong {
-  font-size: 30px;
+.trouble-title-left strong {
+  font-size: 40px;
   line-height: 100px;
 }
 
-.solved-select-area {
-  line-height: 60px;
+.fa-sad-tear {
+  font-size: 25px;
+  color: red;
+}
+
+.fa-smile-beam {
+  font-size: 25px;
+  color: green;
+}
+
+// コメント欄
+
+// ホスト側設定
+.balloon1-left {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+}
+
+.balloon1-left:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -85px;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-right: 70px solid #e0edff;
+}
+
+.balloon1-left p {
+  margin: 0;
+  padding: 0;
+}
+
+// ゲスト側設定
+
+.balloon1-right {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 15px 1.5em 0;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+}
+
+.balloon1-right:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -15px;
+  border: 15px solid transparent;
+  border-left: 15px solid #e0edff;
+}
+
+.balloon1-right .balloon1-right-content {
+  margin: 0;
+  padding: 0;
 }
