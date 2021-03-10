@@ -242,3 +242,19 @@ body {
   border-radius: 10px; /* 角丸に */
   resize: none; /* リサイズ不可に */
 }
+
+
+// 悩み一覧画面用
+
+.trouble-index-item {
+  background: #e0edff;
+  border-radius: 15px;
+  padding: 20px 15px;
+  margin-bottom: 25px;
+}
+
+.trouble-index-item p {
+  margin: 0px auto;
+  text-align: right;
+  color: grey;
+}
