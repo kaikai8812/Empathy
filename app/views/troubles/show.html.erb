@@ -7,26 +7,22 @@
 
 <!--悩みー内容部分-->
   <div class="container mt-5">
-    <div class="row trouble-content-area">
+    <div class="row trouble-content-area flex-nowrap">
       <%= render 'troubles/content_area', trouble: @trouble %>
     </div>
   </div>
   <!--↓コメント一覧↓-->
   
-  <div class="container comment-list">
+  <div class="container comment-list border-bottom pb-4">
     <%= render 'troubles/post_comment_area', post_comments: @post_comments, trouble: @trouble, chat_message: @chat_message%>
   </div>
   
   <!--↓コメントフォーム↓-->
-  <div class="new-comment">
-    <% if current_user.id != @trouble.user_id && @trouble.is_solved == false %>    <!--↓解決済みになったら、コメントが記述できない条件設定↓-->
-      <%= form_with(model: [@trouble, @post_comment], local: true) do |f| %>
-        <%= f.text_area :comment, placeholder: "コメント入力" %>
-        <%= f.hidden_field :trouble_id, value: @trouble.id %>
-        <%= f.submit "コメントを送信" %>
-      <% end %>
-    <% end %>
-  </div>
+  <% if current_user.id != @trouble.user_id && @trouble.is_solved == false %>    <!--↓解決済みになったら、コメントが記述できない条件設定↓-->
+    <div class="container new-comment-area pb-4 pt-3">
+      <%= render 'troubles/new_comment_area', trouble: @trouble, post_comment: @post_comment %>
+    </div>
+  <% end %>
 
   <!--↑コメントフォーム↑-->
   

@@ -4,11 +4,12 @@
       <%= trouble.title %>
       </strong>
         <div class="solved-select-area ">
-        <% if current_user == trouble.user && trouble.is_solved == false %>
+          <!--悩み投稿者だけが解決ステータスをいじれるように記述する必要あり。-->
+        <% if trouble.is_solved == false %>
           <%= link_to trouble_status_path(trouble), method: :patch do %>
             <i class="far fa-sad-tear ">未解決</i>
           <% end %>
-        <% elsif current_user == trouble.user && trouble.is_solved == true %>
+        <% elsif  trouble.is_solved == true %>
             <i class="far fa-smile-beam">解決済み</i>
         <% end %>
         </div>

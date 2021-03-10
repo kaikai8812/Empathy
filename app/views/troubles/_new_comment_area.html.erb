@@ -1,0 +1,13 @@
+      <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <%= form_with(model: [trouble, post_comment], local: true) do |f| %>
+              <%= f.text_area :comment, placeholder: "コメント入力はこちら!", class: "new-comment-form" %>
+              <%= f.hidden_field :trouble_id, value: trouble.id %>
+              <div style="text-align: center">
+              <%= f.submit "コメントを送信", class: "new-comment-submit ml-auto" %>
+              </div>
+            <% end %>
+        </div>
+        <div class="col-md-2"></div>
+      </div>

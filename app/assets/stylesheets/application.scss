@@ -32,6 +32,11 @@ body {
 
 // 悩み詳細画面関係
 
+.trouble-main-area {
+  border-radius: 40px;
+  margin-bottom: 100px;
+}
+
 .title-area { 
   height: auto;
 }
@@ -64,15 +69,16 @@ body {
   color: #555;
   font-size: 16px;
   background: #e0edff;
+  border-radius: 15px;
 }
 
 .balloon1-left:before {
   content: "";
   position: absolute;
-  top: 50%;
+  top: 37%;
   left: -85px;
   margin-top: -15px;
-  border: 15px solid transparent;
+  border: 22px solid transparent;
   border-right: 70px solid #e0edff;
 }
 
@@ -93,6 +99,7 @@ body {
   color: #555;
   font-size: 16px;
   background: #e0edff;
+  border-radius: 15px;
 }
 
 .balloon1-right:before {
@@ -100,12 +107,44 @@ body {
   position: absolute;
   top: 50%;
   left: 100%;
-  margin-top: -15px;
-  border: 15px solid transparent;
-  border-left: 15px solid #e0edff;
+  margin-top: -22px;
+  border: 22px solid transparent;
+  border-left: 79px solid #e0edff;
 }
 
 .balloon1-right .balloon1-right-content {
   margin: 0;
   padding: 0;
+}
+
+.guest-image p {
+     top: 105%;
+    right: 3%;
+}
+
+// いいねボタン関連
+.thanks-post-button {
+  color: black;
+  background-color: pink;
+  border-color: pink;
+}
+
+.fa-heart {
+  color: red;
+}
+
+// コメントフォーム欄
+
+.new-comment-form{
+  width: 100%; /* 幅 */
+  margin: 1em 0; /* 周囲の余白 */
+  padding: 0.5em; /* 枠線内の余白 */
+  font-size: 1em; /* フォントサイズ */
+  border: solid 2px #e1e3e8; /* 枠線のスタイル */
+  border-radius: 10px; /* 角丸に */
+  resize: none; /* リサイズ不可に */
+}
+
+.new-comment-submit{
+
 }
