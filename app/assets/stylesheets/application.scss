@@ -59,7 +59,7 @@ body {
 // コメント欄
 
 // ホスト側設定
-.balloon1-left {
+.post-comment-left {
   position: relative;
   display: inline-block;
   margin: 1.5em 0 1.5em 15px;
@@ -72,7 +72,7 @@ body {
   border-radius: 15px;
 }
 
-.balloon1-left:before {
+.post-comment-left:before {
   content: "";
   position: absolute;
   top: 37%;
@@ -82,14 +82,14 @@ body {
   border-right: 70px solid #e0edff;
 }
 
-.balloon1-left p {
+.post-comment-left p {
   margin: 0;
   padding: 0;
 }
 
 // ゲスト側設定
 
-.balloon1-right {
+.post-comment-right {
   position: relative;
   display: inline-block;
   margin: 1.5em 15px 1.5em 0;
@@ -102,7 +102,7 @@ body {
   border-radius: 15px;
 }
 
-.balloon1-right:before {
+.post-comment-right:before {
   content: "";
   position: absolute;
   top: 50%;
@@ -112,7 +112,7 @@ body {
   border-left: 79px solid #e0edff;
 }
 
-.balloon1-right .balloon1-right-content {
+.post-comment-right .post-comment-right-content {
   margin: 0;
   padding: 0;
 }
@@ -145,6 +145,100 @@ body {
   resize: none; /* リサイズ不可に */
 }
 
-.new-comment-submit{
+// チャット関係
 
+#chat-message-list{
+  width: 100%;
+}
+
+.chat-message-left {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #FFF;
+  border: solid 3px #555;
+  box-sizing: border-box;
+}
+
+.chat-message-left:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -24px;
+  margin-top: -12px;
+  border: 12px solid transparent;
+  border-right: 12px solid #FFF;
+  z-index: 2;
+}
+
+.chat-message-left:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  margin-top: -14px;
+  border: 14px solid transparent;
+  border-right: 14px solid #555;
+  z-index: 1;
+}
+
+.chat-message-left p {
+  margin: 0;
+  padding: 0;
+}
+
+.chat-message-right {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 15px 1.5em 0;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #FFF;
+  border: solid 3px #555;
+  box-sizing: border-box;
+}
+
+.chat-message-right:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -24px;
+  margin-top: -12px;
+  border: 12px solid transparent;
+  border-left: 12px solid #FFF;
+  z-index: 2;
+}
+
+.chat-message-right:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  margin-top: -14px;
+  border: 14px solid transparent;
+  border-left: 14px solid #555;
+  z-index: 1;
+}
+
+.chat-message-right p {
+  margin: 0;
+  padding: 0;
+}
+
+.new-message-form{
+  width: 80%; /* 幅 */
+  margin: 1em 0; /* 周囲の余白 */
+  padding: 0.5em; /* 枠線内の余白 */
+  font-size: 1em; /* フォントサイズ */
+  border: solid 2px #e1e3e8; /* 枠線のスタイル */
+  border-radius: 10px; /* 角丸に */
+  resize: none; /* リサイズ不可に */
 }

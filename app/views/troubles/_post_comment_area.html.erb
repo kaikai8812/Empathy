@@ -7,7 +7,7 @@
 
         <% if current_user == trouble.user && post_comment.is_displayed == true %>  <!-- 自分の悩みに対してのコメント-->
   
-        <div class="col-md-8 post-comment-content balloon1-right ">
+        <div class="col-md-8 post-comment-content post-comment-right ">
          <p><%= post_comment.comment %></p>
          <div class="comment-button-area d-flex flex-row-reverse ">
            
@@ -52,7 +52,7 @@
           
         <% elsif current_user != trouble.user%>     <!-- 他人の悩みに対してのコメント-->
         
-          <div class="col-md-8 post-comment-content balloon1-right">
+          <div class="col-md-8 post-comment-content post-comment-right">
             
             <p><%= post_comment.comment %></p>
             
@@ -86,7 +86,7 @@
     
        <% if post_comment.is_thanked == true && (current_user.id == trouble.user_id || current_user.id ==post_comment.user_id) %>     <!--チャット機能を使えるかの条件文-->
         <div class="row chat-area">
-          <%= render 'troubles/chat_area', chat_message: chat_message, post_comment: post_comment%>
+          <%= render 'troubles/chat_area', chat_message: chat_message, post_comment: post_comment, trouble: trouble %>
         </div>
        <% end %>
 
