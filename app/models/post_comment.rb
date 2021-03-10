@@ -6,7 +6,7 @@ class PostComment < ApplicationRecord
   belongs_to :user
   belongs_to :trouble
   has_many :likes, dependent: :destroy
-  has_one :room
+  has_one :room, dependent: :destroy
   has_many :notifications, dependent: :destroy
   
   #いいね済みか判断するメソッド  true => いいねあり false => いいねなし

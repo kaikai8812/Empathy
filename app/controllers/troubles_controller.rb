@@ -59,6 +59,9 @@ before_action :set_q, only: [:index, :search]
   end
 
   def destroy
+    @trouble = Trouble.find(params[:id])
+    @trouble.destroy
+    redirect_to my_trouble_path
   end
   
   private
