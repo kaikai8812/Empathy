@@ -1,29 +1,41 @@
-<h1>悩み一覧</h1>
 
-<div class="search-area">
-  <%= search_form_for @q, url: search_troubles_path do |f| %>
-    <%= f.label :title_cont, "悩みのタイトル" %>
-    <%= f.text_field :title_cont %>
-    <%= f.label :category, "カテゴリー" %>
-    <%= f.collection_select :category_id_eq, Category.all, :id, :name, {prompt: "全て"} %>
-    <%= f.label :is_solved, "ステータス" %>
-    <%= f.radio_button :is_solved_eq, ''%>指定しない
-    <%= f.radio_button :is_solved_eq, 'true'%>解決済み
-    <%= f.radio_button :is_solved_eq, 'false'%>未解決
-    <br>
-    <%= f.submit '検索'%>
-  <% end %>
-</div>
-
-<div class="trouble-index container" style="width: 100%">
-  <div class="row justify-content-center">
-    <% @troubles.each do |trouble|%>
-    <div class="col-md-3 m-4 border trouble-index-item ">
-      <strong class="h4 border-bottom border-dark"><%= link_to trouble.title, trouble_path(trouble), class: "text-dark" %></strong>
-      <p style="margin-top: 1em">投稿者: <%= trouble.user.name %></p>
-      <p>コメント数: <%= trouble.post_comments.count %></p>
-      <p>カテゴリー: <%= trouble.category.name %></p>
+<div class="trouble-main-area bg-white mr-auto ml-auto" style="width: 80%">
+  <div class="search-area container">
+    <%= search_form_for @q, url: search_troubles_path do |f| %>
+    <div class="search-top-area row justify-content-center">
+      <%= f.label :title_cont, "悩みのタイトル" %>
+      <%= f.text_field :title_cont %>
+      <%= f.label :category, "カテゴリー" %>
+      <%= f.collection_select :category_id_eq, Category.all, :id, :name, {prompt: "全て"} %>
+    </div>
+    <div class="search-bottom-area row justify-content-center">
+      <%= f.label :is_solved, "ステータス" %>
+      <%= f.radio_button :is_solved_eq, ''%>指定しない
+      <%= f.radio_button :is_solved_eq, 'true'%>解決済み
+      <%= f.radio_button :is_solved_eq, 'false'%>未解決
+      <%= f.submit '検索'%>
     </div>
     <% end %>
+  </div>
+</div>
+
+
+<div class="trouble-main-area bg-white mr-auto ml-auto" style="width: 80%">
+  
+  <div class="trouble-index container" style="width: 100%">
+    <div class="row justify-content-center">
+      <% @troubles.each do |trouble|%>
+      <div class="col-md-3 m-4 border trouble-index-item ">
+        <strong class="h4 border-bottom border-dark"><%= link_to trouble.title, trouble_path(trouble), class: "text-dark" %></strong>
+        <p style="margin-top: 1em">投稿者: <%= trouble.user.name %></p>
+        <p>コメント数: <%= trouble.post_comments.count %></p>
+        <p>カテゴリー: <%= trouble.category.name %></p>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="paginate mt-3 pb-3">
+  <%= paginate @troubles, theme: 'twitter-bootstrap-4'%>
   </div>
 </div>

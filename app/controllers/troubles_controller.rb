@@ -2,7 +2,7 @@ class TroublesController < ApplicationController
 before_action :set_q, only: [:index, :search]
   
   def index
-    @troubles = Trouble.all.where.not(user_id: current_user.id)  #自分の投稿以外を表示させる、
+    @troubles = Trouble.all.where.not(user_id: current_user.id).page(params[:page]).per(9)  #自分の投稿以外を表示させる、
   end
   
   def my_index

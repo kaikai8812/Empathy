@@ -258,3 +258,32 @@ body {
   text-align: right;
   color: grey;
 }
+
+/*ページネーション自体のデザイン*/
+
+.pagination {
+  justify-content: center;
+}
+
+.pagination>li>a {          
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #696969;
+  background-color: #e0edff;
+  border-color: #e0edff;
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {        
+  border-radius: 15px;    /*角を丸くする*/
+}
