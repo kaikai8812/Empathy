@@ -1,0 +1,14 @@
+           <!--↓チャット送信フォーム↓-->
+         <div class="chat-form">
+           チャット送信フォーム
+           <%= form_with model: chat_message, url: chat_messages_path, local:true do |f| %>
+             <%= f.text_area :message, placeholder: "チャット入力" %>
+             <%= f.hidden_field :room_id, value: post_comment.room.id %>
+             <%= f.submit "チャットを送信" %>
+           <% end %>
+         </div>
+         <!--↓チャット表示エリア↓-->
+          <% post_comment.room.chat_messages.each do |chat_message| %>
+            名前：<%= chat_message.user.name %> :
+            <%= chat_message.message %><br>
+          <% end %>
