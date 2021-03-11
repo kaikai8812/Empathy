@@ -1,29 +1,59 @@
-<h1>悩み一覧</h1>
 
-<div class="search-area">
-  <%= search_form_for @q, url: search_troubles_path do |f| %>
-    <%= f.label :title_cont, "悩みのタイトル" %>
-    <%= f.text_field :title_cont %>
-    <%= f.label :category, "カテゴリー" %>
-    <%= f.collection_select :category_id_eq, Category.all, :id, :name, {prompt: "全て"} %>
-    <%= f.label :is_solved, "ステータス" %>
-    <%= f.radio_button :is_solved_eq, ''%>指定しない
-    <%= f.radio_button :is_solved_eq, 'true'%>解決済み
-    <%= f.radio_button :is_solved_eq, 'false'%>未解決
-    <br>
-    <%= f.submit '検索'%>
-  <% end %>
-</div>
-
-<div class="trouble-index container" style="width: 100%">
-  <div class="row justify-content-center">
-    <% @troubles.each do |trouble|%>
-    <div class="col-md-3 m-4 border trouble-index-item ">
-      <strong class="h4 border-bottom border-dark"><%= link_to trouble.title, trouble_path(trouble), class: "text-dark" %></strong>
-      <p style="margin-top: 1em">投稿者: <%= trouble.user.name %></p>
-      <p>コメント数: <%= trouble.post_comments.count %></p>
-      <p>カテゴリー: <%= trouble.category.name %></p>
+<div class="trouble-main-area bg-white mx-auto mb-4" style="width: 80%">
+  <div class="search-area container">
+    <%= search_form_for @q, url: search_troubles_path do |f| %>
+    <div class="search-top-area row pt-3 pb-3">
+      
+      <div class="col-md-6 px-0 text-center">
+        <%= f.label :title_cont, "キーワード" %>
+        <%= f.text_field :title_cont, class: "search-text-form" %>
+      </div>
+      <div class="col-md-6 px-0 text-center">
+        <%= f.label :category_id_eq, "カテゴリー" %>
+        <%= f.collection_select :category_id_eq, Category.all, :id, :name, {prompt: "全て"}, class: "search-category-form" %>
+      </div>
+      
+    </div>
+    <div class="search-bottom-area row pb-3">
+      <div class="col-md-6 px-0">
+        <div class="search-radio-button text-center">
+          ステータス
+          <%= f.radio_button :is_solved_eq, ''%>
+          <%= f.label :is_solved_eq_, "選択しない"%>
+          <%= f.radio_button :is_solved_eq, 'true'%>
+          <%= f.label :is_solved_eq_true, "解決済み"%>
+          <%= f.radio_button :is_solved_eq, 'false'%>
+          <%= f.label :is_solved_eq_false, "未解決"%>
+        </div>
+      </div>
+      <div class="col-md-6 px-0 text-center">
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-search px-5">検索</i>
+        </button>
+      </div>
     </div>
     <% end %>
   </div>
 </div>
+
+
+<div class="trouble-main-area bg-white mr-auto ml-auto" style="width: 80%">
+  
+  <div class="trouble-index container" style="width: 100%">
+    <div class="row justify-content-center">
+      <% @troubles.each do |trouble|%>
+      <div class="col-md-3 m-4 border trouble-index-item ">
+        <strong class="h4 border-bottom border-dark"><%= link_to trouble.title, trouble_path(trouble), class: "text-dark" %></strong>
+        <p style="margin-top: 1em">投稿者: <%= trouble.user.name %></p>
+        <p>コメント数: <%= trouble.post_comments.count %></p>
+        <p>カテゴリー: <%= trouble.category.name %></p>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <div class="paginate mt-3 pb-3">
+  <%= paginate @troubles, theme: 'twitter-bootstrap-4'%>
+  </div>
+</div>
+

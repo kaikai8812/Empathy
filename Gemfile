@@ -59,3 +59,5 @@ gem "devise"
 gem "ransack"
 gem "rails-i18n", "~> 5.1"
 gem 'font-awesome-sass'
+gem 'kaminari'
+gem 'bootstrap4-kaminari-views'
