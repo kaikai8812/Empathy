@@ -246,6 +246,11 @@ body {
 
 // 悩み一覧画面用
 
+.trouble-index-area {
+  border-radius: 40px;
+  margin-bottom: 100px;
+}
+
 .trouble-index-item {
   background: #e0edff;
   border-radius: 15px;
@@ -290,6 +295,10 @@ body {
 
 // 検索フォーム関連
 
+.search-area {
+  border-radius: 40px;
+}
+
 .search-text-form {
   border-radius: 10px;
   border: solid 2px #e1e3e8;
@@ -300,13 +309,14 @@ body {
   border-radius: 10px;
   border: solid 2px #e1e3e8;
   padding: 0.3em;
+  cursor: pointer; 
 }
 
 .search-radio-button input[type="radio"] + label {
-  padding       : 0 4px;                      /* labelの余白 */
-  font-weight   : normal;                     /* 文字太さ   */
-  border-radius : 5px;                        /* labelの角丸 */
-  cursor        : pointer;                    /* カーソル設定 */
+  padding: 0 4px;                      /* labelの余白 */
+  font-weight: normal;                     /* 文字太さ   */
+  border-radius: 5px;                        /* labelの角丸 */
+  cursor: pointer;                    /* カーソル設定 */
   
 }
 

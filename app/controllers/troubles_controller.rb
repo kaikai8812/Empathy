@@ -1,5 +1,5 @@
 class TroublesController < ApplicationController
-before_action :set_q, only: [:index, :search]
+before_action :set_search, only: [:index, :search]
   
   def index
     @troubles = Trouble.all.where.not(user_id: current_user.id).page(params[:page]).per(9)  #自分の投稿以外を表示させる、
@@ -55,7 +55,7 @@ before_action :set_q, only: [:index, :search]
     redirect_to trouble_path(@trouble)
   end
   def search
-    @results = @q.result.where.not(user_id: current_user.id)
+    @results = @search.result.where.not(user_id: current_user.id).page(params[:page]).per(9) 
   end
 
   def destroy
@@ -70,8 +70,8 @@ before_action :set_q, only: [:index, :search]
     params.require(:trouble).permit(:title, :content, :category_id)
   end
   
-  def set_q
-    @q = Trouble.ransack(params[:q])
+  def set_search
+    @search = Trouble.ransack(params[:q])
   end
   
 end
