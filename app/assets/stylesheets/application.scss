@@ -287,3 +287,33 @@ body {
 .pagination>li>a:hover {        
   border-radius: 15px;    /*角を丸くする*/
 }
+
+// 検索フォーム関連
+
+.search-text-form {
+  border-radius: 10px;
+  border: solid 2px #e1e3e8;
+  padding: 0.3em;
+}
+
+.search-category-form {
+  border-radius: 10px;
+  border: solid 2px #e1e3e8;
+  padding: 0.3em;
+}
+
+.search-radio-button input[type="radio"] + label {
+  padding       : 0 4px;                      /* labelの余白 */
+  font-weight   : normal;                     /* 文字太さ   */
+  border-radius : 5px;                        /* labelの角丸 */
+  cursor        : pointer;                    /* カーソル設定 */
+  
+}
+
+.search-radio-button input[type="radio"]:checked + label {
+  border: 2px solid #e1e3e8;
+}
+
+.search-radio-button input[type="radio"]:not(:checked) + label:hover {
+  background: #e1e3e8;
+}
