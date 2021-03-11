@@ -369,3 +369,13 @@ label {
   padding: 0.3em;
   cursor: pointer; 
 }
+
+// 自分のコメント一覧
+
+.my-comment-list {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+.my-comment-list table thead tr th {
+  border: none;
+}
