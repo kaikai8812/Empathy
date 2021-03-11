@@ -6,7 +6,7 @@ before_action :set_search, only: [:index, :search]
   end
   
   def my_index
-    @troubles = current_user.troubles
+    @troubles = current_user.troubles.page(params[:page]).per(9)
   end
   
 

@@ -18,3 +18,10 @@ Category.create(name: "環境")
 Category.create(name: "価値観")
 Category.create(name: "将来")
 Category.create(name: "その他")
+
+#テストユーザー作成用
+
+User.create(name: "user1", email: "user1@email", password: "kaikai")
+User.create(name: "user2", email: "user2@email", password: "kaikai")
+User.create(name: "user3", email: "user3@email", password: "kaikai")
+User.create(name: "user4", email: "user4@email", password: "kaikai")

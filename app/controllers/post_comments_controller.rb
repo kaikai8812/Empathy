@@ -12,7 +12,7 @@ class PostCommentsController < ApplicationController
     @post_comment = current_user.post_comments.new(post_comment_params)
     @post_comment.save
     # binding.pry
-    @post_comment.create_notification_comment!(current_user, @post_comment.trouble.user_id)
+    # @post_comment.create_notification_comment!(current_user, @post_comment.trouble.user_id)
     redirect_to request.referer
     
   end

@@ -29,14 +29,17 @@ class PostComment < ApplicationRecord
   end
   
   #コメント投稿の通知メソッド
-  def create_notification_comment!(current_user, visited_id)
-    notification = current_user.active_notifications.new(
-      visited_id: visited_id,
-      post_comment_id: id,
-      action: 'comment'
-      )
-    # binding.pry
-    notification.save
+  def create_notification_comment!(post_comment_user, trouble_user_id)
+    temp = Notification.where(["post_comment_id = ? and action = ?", id, 'comment'])  #同じ通知を何回も繰り返さないため。
+    if temp.blank?
+      notification = post_comment_user.active_notifications.new(
+        visited_id: trouble_user_id,
+        post_comment_id: id,
+        action: 'comment'
+        )
+      binding.pry
+      notification.save
+    end
   end
   
   def chat_message(user)
