@@ -22,6 +22,9 @@
             <li class="nav-item">
               <%= link_to "悩み一覧", troubles_path, class: "nav-link" %>
             </li>
+            <li class="nav-item">
+              <%= link_to "悩みの投稿", new_trouble_path, class: "nav-link" %>
+            </li>
             
           </ul> 
           <% if user_signed_in? %>
@@ -63,8 +66,9 @@
     </header>
     <!--↑ヘッダー↑-->
     
-
+<div class="mx-auto"  style="width: 80%">
     <%= yield %>
+</div>
 
     
   </body>

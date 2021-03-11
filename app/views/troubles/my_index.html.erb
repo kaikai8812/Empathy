@@ -1,13 +1,12 @@
-<h1>自分の悩み一覧(仮作成)</h1>
+<strong class="page-title">自分の悩み一覧</strong>
 
-<div class="trouble-index-area bg-white mr-auto ml-auto" style="width: 80%">
+<div class="trouble-index-area bg-white mr-auto ml-auto">
   <div class="trouble-index container" style="width: 100%">
     <div class="row justify-content-center">
       <% @troubles.each do |trouble|%>
       <div class="col-md-3 m-4 border trouble-index-item ">
         <strong class="h4 border-bottom border-dark"><%= link_to trouble.title, trouble_path(trouble), class: "text-dark" %></strong>
-        <p style="margin-top: 1em">投稿者: <%= trouble.user.name %></p>
-        <p>コメント数: <%= trouble.post_comments.where(is_displayed: true).count %></p>
+        <p style="margin-top: 1em">コメント数: <%= trouble.post_comments.where(is_displayed: true).count %></p>
         <p>カテゴリー: <%= trouble.category.name %></p>
       </div>
       <% end %>
