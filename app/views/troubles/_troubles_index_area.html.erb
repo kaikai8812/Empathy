@@ -1,0 +1,18 @@
+<!-- troubles = 表示させたい悩み等--> 
+
+<div class="trouble-index container" style="width: 100%">
+  <div class="row justify-content-center">
+    <% troubles.each do |trouble|%>
+    <div class="col-md-3 m-4 border trouble-index-item ">
+      <strong class="h4 border-bottom border-dark"><%= link_to trouble.title, trouble_path(trouble), class: "text-dark" %></strong>
+      <p style="margin-top: 1em">投稿者: <%= trouble.user.name %></p>
+      <p>コメント数: <%= trouble.post_comments.count %></p>
+      <p>カテゴリー: <%= trouble.category.name %></p>
+    </div>
+    <% end %>
+  </div>
+</div>
+
+<div class="paginate mt-3 pb-3">
+<%= paginate troubles, theme: 'twitter-bootstrap-4'%>
+</div>

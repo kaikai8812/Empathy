@@ -1,0 +1,399 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */@import "bootstrap";
+   @import "font-awesome-sprockets";
+   @import "font-awesome";
+
+.fa-circle {
+  color: red;
+}
+
+body {
+  background-color: #f8f9fa;
+}
+
+
+#border-default {
+  border-radius: 40px;
+  background-color: white;
+}
+
+label {
+  margin-bottom: 0;
+}
+
+// 悩み詳細画面関係
+
+.trouble-main-area {
+  border-radius: 40px;
+  margin-bottom: 100px;
+}
+
+.title-area { 
+  height: auto;
+}
+
+.trouble-title-left strong {
+  font-size: 40px;
+  line-height: 100px;
+}
+
+.fa-sad-tear {
+  font-size: 25px;
+  color: red;
+}
+
+.fa-smile-beam {
+  font-size: 25px;
+  color: green;
+}
+
+// コメント欄
+
+// ホスト側設定
+.post-comment-left {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+  border-radius: 15px;
+}
+
+.post-comment-left:before {
+  content: "";
+  position: absolute;
+  top: 37%;
+  left: -85px;
+  margin-top: -15px;
+  border: 22px solid transparent;
+  border-right: 70px solid #e0edff;
+}
+
+.post-comment-left p {
+  margin: 0;
+  padding: 0;
+}
+
+// ゲスト側設定
+
+.post-comment-right {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 15px 1.5em 0;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #e0edff;
+  border-radius: 15px;
+}
+
+.post-comment-right:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  margin-top: -22px;
+  border: 22px solid transparent;
+  border-left: 79px solid #e0edff;
+}
+
+.post-comment-right .post-comment-right-content {
+  margin: 0;
+  padding: 0;
+}
+
+.guest-image p {
+     top: 105%;
+    right: 3%;
+}
+
+// いいねボタン関連
+.thanks-post-button {
+  color: black;
+  background-color: pink;
+  border-color: pink;
+}
+
+.fa-heart {
+  color: red;
+}
+
+// コメントフォーム欄
+
+.new-comment-form{
+  width: 100%; /* 幅 */
+  margin: 1em 0; /* 周囲の余白 */
+  padding: 0.5em; /* 枠線内の余白 */
+  font-size: 1em; /* フォントサイズ */
+  border: solid 2px #e1e3e8; /* 枠線のスタイル */
+  border-radius: 10px; /* 角丸に */
+  resize: none; /* リサイズ不可に */
+}
+
+// チャット関係
+
+#chat-message-list{
+  width: 100%;
+}
+
+.chat-message-left {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 0 1.5em 15px;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #FFF;
+  border: solid 3px #555;
+  box-sizing: border-box;
+}
+
+.chat-message-left:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -24px;
+  margin-top: -12px;
+  border: 12px solid transparent;
+  border-right: 12px solid #FFF;
+  z-index: 2;
+}
+
+.chat-message-left:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: -30px;
+  margin-top: -14px;
+  border: 14px solid transparent;
+  border-right: 14px solid #555;
+  z-index: 1;
+}
+
+.chat-message-left p {
+  margin: 0;
+  padding: 0;
+}
+
+.chat-message-right {
+  position: relative;
+  display: inline-block;
+  margin: 1.5em 15px 1.5em 0;
+  padding: 7px 10px;
+  min-width: 120px;
+  max-width: 100%;
+  color: #555;
+  font-size: 16px;
+  background: #FFF;
+  border: solid 3px #555;
+  box-sizing: border-box;
+}
+
+.chat-message-right:before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -24px;
+  margin-top: -12px;
+  border: 12px solid transparent;
+  border-left: 12px solid #FFF;
+  z-index: 2;
+}
+
+.chat-message-right:after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -30px;
+  margin-top: -14px;
+  border: 14px solid transparent;
+  border-left: 14px solid #555;
+  z-index: 1;
+}
+
+.chat-message-right p {
+  margin: 0;
+  padding: 0;
+}
+
+.new-message-form{
+  width: 80%; /* 幅 */
+  margin: 1em 0; /* 周囲の余白 */
+  padding: 0.5em; /* 枠線内の余白 */
+  font-size: 1em; /* フォントサイズ */
+  border: solid 2px #e1e3e8; /* 枠線のスタイル */
+  border-radius: 10px; /* 角丸に */
+  resize: none; /* リサイズ不可に */
+}
+
+
+// 悩み一覧画面用
+
+.trouble-index-area {
+  border-radius: 40px;
+  margin-bottom: 100px;
+}
+
+.trouble-index-item {
+  background: #e0edff;
+  border-radius: 15px;
+  padding: 20px 15px;
+  margin-bottom: 25px;
+}
+
+.trouble-index-item p {
+  margin: 0px auto;
+  text-align: right;
+  color: grey;
+}
+
+/*ページネーション自体のデザイン*/
+
+.pagination {
+  justify-content: center;
+}
+
+.pagination>li>a {          
+  border: none;     /*枠線をなくす*/
+  color: #696969;   /*文字の色を変える*/
+}
+
+/* 表示しているページ番号のデザイン */
+.pagination>.active>a {     
+  background: #93c9ff;     /*背景の色を変える*/
+  border-radius: 15px;     /*角を丸くする*/
+}
+
+.page-item.active .page-link {
+  z-index: 3;
+  color: #696969;
+  background-color: #e0edff;
+  border-color: #e0edff;
+}
+
+/*ホバー時のデザイン*/
+.pagination>li>a:hover {        
+  border-radius: 15px;    /*角を丸くする*/
+}
+
+// 検索フォーム関連
+
+.search-area {
+  border-radius: 40px;
+}
+
+.search-text-form {
+  border-radius: 10px;
+  border: solid 2px #e1e3e8;
+  padding: 0.3em;
+}
+
+.search-category-form {
+  border-radius: 10px;
+  border: solid 2px #e1e3e8;
+  padding: 0.3em;
+  cursor: pointer; 
+}
+
+.search-radio-button input[type="radio"] + label {
+  padding: 0 4px;                      /* labelの余白 */
+  font-weight: normal;                     /* 文字太さ   */
+  border-radius: 5px;                        /* labelの角丸 */
+  cursor: pointer;                    /* カーソル設定 */
+  
+}
+
+.search-radio-button input[type="radio"]:checked + label {
+  border: 2px solid #e1e3e8;
+}
+
+.search-radio-button input[type="radio"]:not(:checked) + label:hover {
+  background: #e1e3e8;
+}
+
+
+// 悩みの新規登録関係
+
+.new-trouble-form {
+  width: 75%;
+  margin: 0 auto;
+}
+
+.new-trouble-title-form,
+.user-edit-form{
+  width: 100%; /* 幅 */
+  margin: 1em 0; /* 周囲の余白 */
+  padding: 0.5em; /* 枠線内の余白 */
+  font-size: 1em; /* フォントサイズ */
+  border: solid 2px #e1e3e8; /* 枠線のスタイル */
+  border-radius: 10px; /* 角丸に */
+}
+
+.new-trouble-content-form {
+  width: 100%; /* 幅 */
+  margin: 1em 0; /* 周囲の余白 */
+  padding: 0.5em; /* 枠線内の余白 */
+  font-size: 1em; /* フォントサイズ */
+  border: solid 2px #e1e3e8; /* 枠線のスタイル */
+  border-radius: 10px; /* 角丸に */
+  resize: none; /* リサイズ不可に */
+}
+
+.new-trouble-category-form {
+  width: 100%;
+  border-radius: 10px;
+  border: solid 2px #e1e3e8;
+  padding: 0.3em;
+  cursor: pointer; 
+}
+
+// 自分のコメント一覧
+
+.my-comment-list {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+.my-comment-list table thead tr th {
+  border: none;
+}
+
+// 通知画面一覧
+.notification-list {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+.notification-list table thead tr th {
+  border: none;
+}
+
+.notification-list .table td {
+  vertical-align: middle;
+}
+
+// マイページ関連
+
+.mypage-area {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}

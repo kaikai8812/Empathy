@@ -1,0 +1,28 @@
+<h1>自分のコメント一覧</h1>
+
+<div class="my-comment-list" id="border-default"  >
+  <table class="table mx-auto " style="width: 80%">
+    <thead>
+      <tr>
+        <th>悩みのタイトル</th>
+        <th>コメント内容</th>
+        <th>いいね数</th>
+        <th>日付</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @post_comments.each do |comment| %>
+        <tr>
+          <td><%= link_to comment.trouble.title, trouble_path(comment.trouble) %></td>
+          <td><%= comment.comment.truncate(15) %></td>
+          <td><%= comment.likes.count %>いいね</td>
+          <td><%= comment.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="paginate mt-3 pb-3">
+    <%= paginate @post_comments, theme: 'twitter-bootstrap-4'%>
+  </div>
+</div>
+  

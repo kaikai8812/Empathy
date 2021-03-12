@@ -1,0 +1,46 @@
+           <!--↓チャット送信フォーム↓-->
+         <!--↓チャット表示エリア↓-->
+         <div class="col-md-2"></div>
+         
+         <div class="col-md-8">
+           <div class="chat-message-area">
+            <div class="container" id="chat-message-list">
+            <% post_comment.room.chat_messages.each do |chat_message| %>
+              
+              <% if chat_message.user == trouble.user %>
+                <div class="row flex-nowrap">
+                  <div class="col-md-2 mt-auto mb-auto">
+                    <%= attachment_image_tag chat_message.user, :profile_image,format: 'jpeg', fallback: "no_image.jpg", size:"50x50", class: "rounded-circle"%>
+                  </div>
+                  <div class="col-md-8 chat-message-left ">
+                    <p><%= chat_message.message %></p>
+                  </div>
+                  <div class="col-md-2"></div>
+                </div>
+                
+              <% else %>
+                <div class="row flex-nowrap">
+                  <div class="col-md-2"></div>
+                  <div class="col-md-8 chat-message-right">
+                    <p><%= chat_message.message %></p>
+                  </div>
+                  <div class="col-md-2 mt-auto mb-auto pull-left">
+                    <%= attachment_image_tag chat_message.user, :profile_image,format: 'jpeg', fallback: "no_image.jpg", size:"50x50", class: "rounded-circle pull-left"%>
+                  </div>
+                </div>
+              <%end%>
+            <% end %>
+            </div>
+           </div>
+           <div class="chat-form" style="text-align: center">
+             <%= form_with model: chat_message, url: chat_messages_path, local:true do |f| %>
+               <%= f.text_area :message, placeholder: "チャット入力", class: "new-message-form" %>
+               <%= f.hidden_field :room_id, value: post_comment.room.id %>
+               <div style="text-align: center">
+                 <%= f.submit "チャットを送信" %>
+               </div>
+             <% end %>
+           </div>
+         </div>
+         
+         <div class="col-md-2"></div>

@@ -1,0 +1,15 @@
+
+
+<div class="search-area mx-auto mb-4  bg-white">
+  <%= render 'troubles/search_area', search: @search %>
+</div>
+
+<div class="trouble-index-area bg-white mr-auto ml-auto">
+  <% if @results.exists?%>
+  <%= render 'troubles/troubles_index_area', troubles: @results %>
+  <% else %>
+  <div class="mx-auto lead" style="width: 400px;"　>
+    条件に該当する結果はありませんでした。
+  </div>
+  <% end %>
+</div>
