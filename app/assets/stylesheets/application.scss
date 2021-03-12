@@ -24,9 +24,6 @@ body {
   background-color: #f8f9fa;
 }
 
-.container {
-  width: 80%;
-}
 
 #border-default {
   border-radius: 40px;
@@ -391,4 +388,11 @@ label {
 
 .notification-list .table td {
   vertical-align: middle;
+}
+
+// マイページ関連
+
+.mypage-area {
+  padding-top: 2em;
+  padding-bottom: 2em;
 }

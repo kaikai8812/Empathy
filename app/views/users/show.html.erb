@@ -1,9 +1,31 @@
 <h1>マイページ</h1>
+<div class="container mypage-area" id="border-default"  >
+  <div class="row mypage-top border-bottom mx-auto pb-3" style="width: 80%">
+    <div class="col-md-1"></div>
+    <div class="col-md-3 text-left">
+       <%= attachment_image_tag @user, :profile_image,format: 'jpeg', fallback: "no_image.jpg", size:"100x100", class: "rounded-circle" %>
+       <%= link_to "自分の悩み一覧", my_trouble_path, class: "btn btn-success"%>
+       <%= link_to "自分のコメント一覧", post_comments_path, class: "btn btn-success" %>
+    </div>
+    <div class="col-md-4 pl-0 ">
+      <strong class="h2"><%= @user.name %></strong>
+      <p class="text-muted pt-2">メールアドレス:<%= @user.email %></p>
+    </div> 
+    <div class="col-md-4 text-center">
+      <%= link_to "情報を編集する", edit_users_path, class: "btn btn-secondary" %>
+    </div>
+  </div>
+  
+  <div class="row mypage-bottom mx-auto" style="width: 80%">
+    <div>
+    <%= link_to "自分の悩み一覧", my_trouble_path, class: "btn btn-success"%>
+    </div>
 
-<p>名前:<%= @user.name %></p>
-<p>メールアドレス:<%= @user.email %></p>
-<p>プロフィール画像: <%= attachment_image_tag @user, :profile_image,format: 'jpeg', fallback: "no_image.jpg", size:"100x100" %></p>
+  </div>
+  <div class="row mypage-bottom mx-auto" style="width: 80%">
+    <div>
+    <%= link_to "自分のコメント一覧", post_comments_path, class: "btn btn-success" %>
+    </div>
+  </div>
 
-<%= link_to "ユーザ情報編集画面へ", edit_users_path %>
-<%= link_to "自分の悩み一覧", my_trouble_path%>
-<%= link_to "自分のコメント一覧", post_comments_path %>
+</div>
