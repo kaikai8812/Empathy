@@ -37,7 +37,7 @@ class PostComment < ApplicationRecord
         post_comment_id: id,
         action: 'comment'
         )
-      binding.pry
+      # binding.pry
       notification.save
     end
   end

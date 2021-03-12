@@ -1,31 +1,53 @@
 
 <h1>通知一覧</h1>
 
+<div class="notification-list" id="border-default"  >
+  
 <% if @notifications.exists? %>
-
-  <% @notifications.each do |notification| %>
-  <div class="notification-text">
-    <%= notification.visitor.name %>さんから
-    
-    <% case notification.action %>
-    <% when 'like' then %>
-      あなたの
-      <%= notification.post_comment.trouble.title %>
-      へのコメントに、いいねがあります。
-    <% when 'comment' then %>
-      <%= notification.post_comment.trouble.title %>
-      にコメントが届いています。
-    <% when 'chat' then %>
-      チャットメッセージが届いています。
-    <% end %>
-    
+  <table class="table mx-auto " style="width: 80%">
+    <thead>
+      <tr>
+        <th>通知内容</th>
+        <th>時間</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+     <% @notifications.each do |notification| %>
+        <tr>
+          <td>
+            <%= notification.visitor.name %> さんから
+            <% case notification.action %>
+            <% when 'like' then %>
+              「<%= notification.post_comment.trouble.title %>」
+              へのコメント「<%= notification.post_comment.comment.truncate(8) %>」
+              に、いいねがあります。
+            <% when 'comment' then %>
+              <%= notification.post_comment.trouble.title %>
+              にコメントが届いています。
+            <% when 'chat' then %>
+              チャットメッセージが届いています。
+            <% end %>
+          </td>
+          <td><%= time_ago_in_words(notification.created_at).upcase + "前" %></td>
+          <td>
+            <% case notification.action %>
+            <% when 'like','comment' then %>
+              <%= link_to "確認", trouble_path(notification.post_comment.trouble), class: "btn btn-primary"%>
+            <% when 'chat' then %>
+              <%= link_to "確認", trouble_path(notification.chat_message.room.post_comment.trouble), class: "btn btn-primary"%>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% else %>
+  <div class="mx-auto lead text-center" style="width: 400px;"　>
+    通知はまだありません。
   </div>
-    <%= time_ago_in_words(notification.created_at).upcase + "前" %>
   <% end %>
-
-<% else %>
-
- <p>通知はありません。</p>
-
-<% end %>
-
+  <div class="paginate mt-3 pb-3">
+    <%= paginate @notifications, theme: 'twitter-bootstrap-4'%>
+  </div>  
+</div>

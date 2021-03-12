@@ -379,3 +379,16 @@ label {
 .my-comment-list table thead tr th {
   border: none;
 }
+
+// 通知画面一覧
+.notification-list {
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+.notification-list table thead tr th {
+  border: none;
+}
+
+.notification-list .table td {
+  vertical-align: middle;
+}

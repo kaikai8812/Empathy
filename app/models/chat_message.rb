@@ -13,7 +13,7 @@ class ChatMessage < ApplicationRecord
       action: 'chat'
       )
     notification.save
-    binding.pry
+    # binding.pry
   end
   
   
