@@ -1,27 +1,30 @@
-<h1>悩み編集画面</h1>
 
-<div class="trouble-form">
+
+
+<h1 class="mx-auto" style="width: 75%">悩み編集画面</h1>
+
+<div class="new-trouble-form" id="border-default">
   <%= form_with model: @trouble, local:true do |f| %>
     
-    <div class="title-form">
-      <%= f.label :タイトル%>
-      <%= f.text_field :title%>
-    </div>
+    <table class="mx-auto new-trouble-table">
+      <tbody>
+        <tr class="border-bottom">
+          <th><%= f.label :タイトル%></th>
+          <td style="width: 83%"><%= f.text_field :title, placeholder: "例: 給料が少ないです", class: "new-trouble-title-form"  %></td>
+        </tr>
+        <tr class="border-bottom">
+          <th><%= f.label :内容%></th>
+          <td><%= f.text_area :content, rows:'5',placeholder: "例: 給料が少ないです", class: "new-trouble-content-form"%></td>
+        </tr>
+        <tr class="border-bottom">
+          <th><%= f.label :カテゴリー , class: "mt-3 mb-3"%></th>
+          <td><%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "クリックして選択"}, class: "new-trouble-category-form mt-3 mb-3" %></td>
+        </tr>
+      </tbody>
+    </table>
     
-    <div class="content-form">
-      <%= f.label :内容%>
-      <%= f.text_area :content%>
-    </div>
-    
-    <div class="category-form">
-      <%= f.label :カテゴリー%>
-      <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "カテゴリー選択"} %>
-      
-    </div>
-    
-    <div class="submit-form">
-      <%= f.submit "変更する" %>
+    <div class="new-trouble-submit-form text-center mt-3 pb-4">
+      <%= f.submit "変更する", class: "btn btn-primary px-5" %>
     </div>
     
   <% end %>
-</div>
