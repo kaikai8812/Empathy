@@ -42,12 +42,12 @@
       <% end %>
     </tbody>
   </table>
+  <div class="paginate mt-3 pb-3">
+    <%= paginate @notifications, theme: 'twitter-bootstrap-4'%>
+  </div>  
   <% else %>
   <div class="mx-auto lead text-center" style="width: 400px;"　>
     通知はまだありません。
   </div>
   <% end %>
-  <div class="paginate mt-3 pb-3">
-    <%= paginate @notifications, theme: 'twitter-bootstrap-4'%>
-  </div>  
 </div>
