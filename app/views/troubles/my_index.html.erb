@@ -1,6 +1,7 @@
-<strong class="page-title">自分の悩み一覧</strong>
+<h1 class="page-title">自分の悩み一覧</h1>
 
 <div class="trouble-index-area bg-white mr-auto ml-auto">
+  <% if @troubles.exists? %>
   <div class="trouble-index container" style="width: 100%">
     <div class="row justify-content-center">
       <% @troubles.each do |trouble|%>
@@ -12,8 +13,13 @@
       <% end %>
     </div>
   </div>
+    <div class="paginate mt-3 pb-3">
+    <%= paginate @troubles, theme: 'twitter-bootstrap-4'%>
+    </div>
+  <% else %>
+    <div class="mx-auto lead text-center pt-4 pb-4" style="width: 400px;"　>
+    自分の悩みはまだありません。
+    </div>
+  <% end%>
   
-  <div class="paginate mt-3 pb-3">
-  <%= paginate @troubles, theme: 'twitter-bootstrap-4'%>
-  </div>
 </div>

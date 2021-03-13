@@ -5,26 +5,28 @@
       
     <div class="col-md-2 host-image"></div>
 
-        <% if current_user == trouble.user && post_comment.is_displayed == true %>  <!-- 自分の悩みに対してのコメント-->
+        <% if (current_user == trouble.user && post_comment.is_displayed == true) || (current_user != trouble.user) %>
   
         <div class="col-md-8 post-comment-content post-comment-right ">
          <p><%= post_comment.comment %></p>
          <div class="comment-button-area d-flex flex-row-reverse ">
            
+           <% if current_user == trouble.user && post_comment.is_displayed == true %>
            <div class="comment-thanks-area">
-           <% if post_comment.is_thanked == false %>
-             <%= link_to trouble_post_comment_path( trouble, post_comment), method: :patch, data: { confirm: "感謝します。よろしいですか？" } do %>
-                <div class="thanks-post-button btn text-black ">
-                  <i class="far fa-heart "></i> 感謝する!
-                </div>
+             <% if post_comment.is_thanked == false %>
+               <%= link_to trouble_post_comment_path( trouble, post_comment), method: :patch, data: { confirm: "感謝します。よろしいですか？" } do %>
+                  <div class="thanks-post-button btn text-black ">
+                    <i class="far fa-heart ">感謝する!</i> 
+                  </div>
+               <% end %>
+             <% else %>
+                  <div class="thanks-post-button btn ">
+                    <i class="fas fa-heart"> 感謝済み</i>
+                  </div>
              <% end %>
-           <% else %>
-                <div class="thanks-post-button btn ">
-                  <i class="fas fa-heart"> 感謝済み</i>
-                </div>
-           <% end %>
            </div>
-
+           
+           <% end %>
             <div class="comment-like-area　text-right">
               <% if post_comment.liked_by?(current_user) %>
                 <%= link_to post_comment_likes_path(post_comment), method: :delete do %>
@@ -40,44 +42,12 @@
                 <% end %>
               <% end %>
             </div>
-
          </div>
         </div>
         <div class="col-md-2 guest-image mt-auto mb-auto pr-0 pl-0 ">
           <%= attachment_image_tag  post_comment.user, :profile_image,format: 'jpeg', fallback: "no_image.jpg", size:"100x100", class: "rounded-circle float-right"  %>
           <p class ="position-absolute"><%= post_comment.user.name%> さん</p>
         </div>
-          
-          
-          
-        <% elsif current_user != trouble.user%>     <!-- 他人の悩みに対してのコメント-->
-        
-          <div class="col-md-8 post-comment-content post-comment-right">
-            
-            <p><%= post_comment.comment %></p>
-            
-            <div class="comment-like-area text-right">
-              <% if post_comment.liked_by?(current_user) %>
-                <%= link_to post_comment_likes_path(post_comment), method: :delete do %>
-                  <div class="like-post-button btn btn-primary">
-                    <i class="far fa-thumbs-up"></i> <%= post_comment.likes.count %> いいね済み！
-                  </div>
-                <% end %>
-              <% else %>
-                <%= link_to post_comment_likes_path(post_comment), method: :post do%>
-                  <div class="like-post-button btn btn-success">
-                    <i class="far fa-thumbs-up"></i> <%= post_comment.likes.count %> いいね! 
-                  </div>
-                <% end %>
-              <% end %>
-            </div>
-            
-          </div>
-
-          <div class="col-md-2 guest-image mt-auto mb-auto pr-0 pl-0">
-              <%= attachment_image_tag  post_comment.user, :profile_image,format: 'jpeg', fallback: "no_image.jpg", size:"100x100", class: "rounded-circle float-right"%>
-            <p class ="position-absolute"><%= post_comment.user.name%> さん</p>
-          </div>
         <% else %>
         <% end %>
 

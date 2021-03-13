@@ -371,8 +371,8 @@ label {
 // 自分のコメント一覧
 
 .my-comment-list {
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
 }
 .my-comment-list table thead tr th {
   border: none;
@@ -380,8 +380,8 @@ label {
 
 // 通知画面一覧
 .notification-list {
-  padding-top: 2em;
-  padding-bottom: 2em;
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
 }
 .notification-list table thead tr th {
   border: none;
@@ -396,4 +396,48 @@ label {
 .mypage-area {
   padding-top: 2em;
   padding-bottom: 2em;
+}
+
+// ヘッダー関連
+
+.nav-item-left {
+  margin-left: 80px;
+  font-weight: bold;
+  font-size: 20px;
+  color: black;
+}
+
+.nav-item-left a:hover {
+  opacity: 0.7;
+}
+
+.far {
+  line-height: 39px;
+}
+
+.nav-notification {
+  margin-right: 20px;
+}
+
+// ヘッダーの、マイページメニュー関係
+
+.dropdown-item {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.dropdown-item:hover {
+  opacity: 0.7;
+  background-color: white;
+}
+
+.dropdown-item p {
+  color: grey;
+  margin-bottom: 0;
+  font-size: 0.3em;
+}
+
+.dropdown-menu {
+  border-radius: 20px;
+  width: 200px;
 }
