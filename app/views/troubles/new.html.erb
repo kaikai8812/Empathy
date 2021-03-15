@@ -17,6 +17,7 @@
           <th><%= f.label :カテゴリー , class: "mt-3 mb-3"%></th>
           <td><%= f.collection_select :category_id, Category.all, :id, :name, {prompt: "クリックして選択"}, class: "new-trouble-category-form mt-3 mb-3" %></td>
         </tr>
+
       </tbody>
     </table>
     
