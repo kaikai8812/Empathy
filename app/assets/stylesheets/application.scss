@@ -45,9 +45,10 @@ label {
   height: auto;
 }
 
-.trouble-title-left strong {
+.trouble-title {
   font-size: 40px;
-  line-height: 100px;
+  font-weight: bold;
+  margin: 20px 0;
 }
 
 .fa-sad-tear {
@@ -58,6 +59,11 @@ label {
 .fa-smile-beam {
   font-size: 25px;
   color: green;
+}
+
+.title-area-right-content {
+  font-size: 20px;
+  margin: 20px 0;
 }
 
 // コメント欄

@@ -1,14 +1,14 @@
-  <div class="col-md-9 title-area rounded-lg d-flex">
+  <div class="col-md-6 offset-md-1 title-area rounded-lg d-flex">
     <div class="trouble-title-left">
-      <strong>
+      <div class="trouble-title">
       <%= trouble.title %>
-      </strong>
+      </div>
         <div class="solved-select-area mb-2 ">
           <!--悩み投稿者だけが解決ステータスをいじれるように記述する必要あり。-->
         <% if current_user == trouble.user %>  
           <% if trouble.is_solved == false %>
             <%= link_to trouble_status_path(trouble), method: :patch, data: { confirm: "解決済みにすると、チャット欄およびコメント欄が封鎖されます。\nよろしいですか？" } do %>
-              <i class="far fa-sad-tear ">解決済みにする</i>
+              <i class="far fa-sad-tear ">未解決</i>
             <% end %>
           <% elsif  trouble.is_solved == true %>
               <i class="far fa-smile-beam">解決済み！</i>
@@ -23,17 +23,22 @@
         </div>
         
         
-      <div class="host-name">投稿者名：<%= trouble.user.name%>さん</div>
-      <div class="category-name">カテゴリー名： <%= trouble.category.name %></div>
+      <div class="host-name">投稿者：<%= trouble.user.name%>さん</div>
+      <div class="category-name">カテゴリー： <%= trouble.category.name %></div>
     </div>
   </div>
-    <div class="col-md-3 title-area-right">
-      <div class="trouble-edit-link">
-       <%= link_to "編集画面へ", edit_trouble_path(trouble) %>
+  <% if current_user == trouble.user%>
+    <div class="col-md-5 title-area-right align-middle">
+      <div class="trouble-edit-link title-area-right-content">
+       <%= link_to "編集画面へ", edit_trouble_path(trouble), class: "btn btn-primary align-middle" %>
       </div>
-      <div class="trouble-destroy-link">
-       <%= link_to "悩みの削除", trouble_path(trouble), method: :delete %>
+      <div class="trouble-edit-link title-area-right-content">
+       <%= link_to "解決済みにする", trouble_status_path(trouble), method: :patch, data: { confirm: "解決済みにすると、チャット欄およびコメント欄が封鎖されます。\nよろしいですか？" }, class: "btn btn-success"  %>
+      </div>
+      <div class="trouble-destroy-link title-area-right-content">
+       <%= link_to "悩みの削除", trouble_path(trouble), method: :delete, data: { confirm: "悩みを削除します。\nよろしいですか？" }, class: "btn btn-danger align-middle"  %>
       </div>
     </div>
+  <% end %>
   
   
