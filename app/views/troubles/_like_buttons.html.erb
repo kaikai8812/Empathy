@@ -1,0 +1,13 @@
+<% if post_comment.liked_by?(current_user) %>
+  <%= link_to post_comment_likes_path(post_comment), method: :delete, remote: true do %>
+    <div class="like-post-button btn btn-primary">
+      <i class="far fa-thumbs-up"></i> <%= post_comment.likes.count %> いいね済み！
+    </div>
+  <% end %>
+<% else %>
+  <%= link_to post_comment_likes_path(post_comment), method: :post, remote: true do%>
+    <div class="like-post-button btn btn-success">
+      <i class="far fa-thumbs-up"></i> <%= post_comment.likes.count %> いいね! 
+    </div>
+  <% end %>
+<% end %>
