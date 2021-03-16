@@ -19,7 +19,7 @@
     </div>
     
     <!--↓コメントフォーム↓-->
-    <% if current_user.id != @trouble.user_id && @trouble.is_solved == false %>    <!--↓解決済みになったら、コメントが記述できない条件設定↓-->
+    <% if user_signed_in? && current_user.id != @trouble.user_id && @trouble.is_solved == false %>    <!--↓解決済みになったら、コメントが記述できない条件設定↓-->
       <div class="container new-comment-area pb-4 pt-3">
         <%= render 'troubles/new_comment_area', trouble: @trouble, post_comment: @post_comment %>
       </div>

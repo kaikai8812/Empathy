@@ -1,2 +1,1 @@
-
-$('#like_buttons').html("<%= j(render 'troubles/like_buttons', post_comment: @post_comment)%>");
+$('#like_buttons_<%= @post_comment.id %>').html("<%= j(render 'troubles/like_buttons', post_comment: @post_comment)%>");

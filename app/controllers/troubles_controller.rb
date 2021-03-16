@@ -2,7 +2,11 @@ class TroublesController < ApplicationController
 before_action :set_search, only: [:index, :search]
   
   def index
-    @troubles = Trouble.all.where.not(user_id: current_user.id).page(params[:page]).per(9)  #自分の投稿以外を表示させる、
+    if user_signed_in?
+      @troubles = Trouble.all.where.not(user_id: current_user.id).page(params[:page]).per(9)  #自分の投稿以外を表示させる、
+    else
+      @troubles = Trouble.all.page(params[:page]).per(9)
+    end
   end
   
   def my_index
@@ -55,7 +59,11 @@ before_action :set_search, only: [:index, :search]
     redirect_to trouble_path(@trouble)
   end
   def search
-    @results = @search.result.where.not(user_id: current_user.id).page(params[:page]).per(9) 
+    if user_signed_in?
+      @results = @search.result.where.not(user_id: current_user.id).page(params[:page]).per(9) 
+    else
+      @results = @search.result.page(params[:page]).per(9)
+    end
   end
 
   def destroy

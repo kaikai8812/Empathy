@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   protected
   
   def configure_permitted_parameters  #ユーザ新規登録時、nameカラムを許可する記述
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email])
   end
     
 end

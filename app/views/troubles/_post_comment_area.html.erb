@@ -13,23 +13,16 @@
            
            <% if current_user == trouble.user && post_comment.is_displayed == true %>
            <div class="comment-thanks-area">
-             <% if post_comment.is_thanked == false %>
-               <%= link_to trouble_post_comment_path( trouble, post_comment), method: :patch, data: { confirm: "感謝します。よろしいですか？" } do %>
-                  <div class="thanks-post-button btn text-black ">
-                    <i class="far fa-heart ">感謝する!</i> 
-                  </div>
-               <% end %>
-             <% else %>
-                  <div class="thanks-post-button btn ">
-                    <i class="fas fa-heart"> 感謝済み</i>
-                  </div>
-             <% end %>
+            <%= render 'troubles/thanks_area', post_comment: post_comment, trouble: trouble%>
            </div>
-           
            <% end %>
-            <div class="comment-like-area　text-right" id="like_buttons" >
+           
+           <% if user_signed_in?%>
+            <div class="comment-like-area　text-right" id="like_buttons_<%= post_comment.id %>" >
               <%= render 'troubles/like_buttons', post_comment: post_comment %>
             </div>
+           <% end%>
+           
          </div>
         </div>
         <div class="col-md-2 guest-image mt-auto mb-auto pr-0 pl-0 ">
@@ -42,7 +35,7 @@
     </div>
     
     
-       <% if post_comment.is_thanked == true && (current_user.id == trouble.user_id || current_user.id ==post_comment.user_id) %>     <!--チャット機能を使えるかの条件文-->
+       <% if user_signed_in? && post_comment.is_thanked == true && (current_user.id == trouble.user_id || current_user.id ==post_comment.user_id) %>     <!--チャット機能を使えるかの条件文-->
         <div class="row chat-area">
           <%= render 'troubles/chat_area', chat_message: chat_message, post_comment: post_comment, trouble: trouble %>
         </div>

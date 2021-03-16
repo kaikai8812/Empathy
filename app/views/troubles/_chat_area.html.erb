@@ -29,11 +29,12 @@
                   </div>
                 </div>
               <%end%>
+              
             <% end %>
             </div>
            </div>
            <div class="chat-form" style="text-align: center">
-             <%= form_with model: chat_message, url: chat_messages_path, local:true do |f| %>
+             <%= form_with model: chat_message, url: chat_messages_path, remote: true do |f| %>
                <%= f.text_area :message, placeholder: "チャット入力", class: "new-message-form" %>
                <%= f.hidden_field :room_id, value: post_comment.room.id %>
                <div style="text-align: center">
