@@ -15,6 +15,35 @@
  */@import "bootstrap";
    @import "font-awesome-sprockets";
    @import "font-awesome";
+   
+   
+// ボタン関係
+
+.btn-circle-border-simple {
+  display: inline-block;
+  text-decoration: none;
+  color: #668ad8;
+  width: 250px;
+  height: 100px;
+  line-height: 100px;
+  border-radius: 50%;
+  border: solid 2px #668ad8;
+  text-align: center;
+  overflow: hidden;
+  font-weight: bold;
+  transition: .4s;
+  font-size: 20px;
+}
+
+.btn-circle-border-simple:hover {
+  background: #b3e1ff;
+  text-decoration: none;
+}
+   
+// 共通
+.font-Comfortaa {
+  font-family: 'Comfortaa', cursive;
+}
 
 .fa-circle {
   color: red;
@@ -22,6 +51,7 @@
 
 body {
   background-color: #f8f9fa;
+  font-family: 'Kosugi Maru', sans-serif;
 }
 
 
@@ -34,6 +64,32 @@ label {
   margin-bottom: 0;
 }
 
+// トップ画面関係
+
+.top-area-title{
+  font-size: 80px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.top-area-introduction{
+  font-size: 20px;
+}
+
+.top-area-button{
+  margin: 30px auto;
+  padding-bottom: 30px;
+}
+
+.top-area-sub-button .btn-circle-border-simple{
+  color: red;
+  border: solid 2px #668ad8;
+}
+
+.top-area-sub-button .btn-circle-border-simple:hover{
+  background: pink;
+  text-decoration: none;
+}
 // 悩み詳細画面関係
 
 .trouble-main-area {

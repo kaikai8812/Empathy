@@ -8,10 +8,11 @@
         <li class="nav-item-left">
           <%= link_to "悩み一覧", troubles_path, class: "nav-link text-body" %>
         </li>
-        <li class="nav-item-left">
-          <%= link_to "悩みの投稿", new_trouble_path, class: "nav-link text-body" %>
-        </li>
-        
+        <% if user_signed_in? %>
+          <li class="nav-item-left">
+            <%= link_to "悩みの投稿", new_trouble_path, class: "nav-link text-body" %>
+          </li>
+        <% end %>
       </ul> 
       <% if user_signed_in? %>
         <ul class="navbar-nav ml-auto">

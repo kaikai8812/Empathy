@@ -1,5 +1,23 @@
-<h1>トップページ</h1>
-
-<%= link_to "ログイン画面", new_user_session_path %>
-<%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-
+<div class="top-area " id="border-default">
+  <h1 class="top-area-title text-center font-Comfortaa">Empathy</h1>
+  <div class="top-area-introduction text-center">
+    <span class="font-Comfortaa">Empathy</span>へようこそ。<br>
+    日々の悩み、ストレスをここで打ち明けましょう。<br>
+    どこかの誰がか共感してくれるはずです。
+  </div>
+  <% if user_signed_in? %>
+  <div class="top-area-button text-center">
+    <%= link_to "みんなの悩みを見る", troubles_path, class: "btn-circle-border-simple"%>
+    <%= link_to "悩みを投稿する", new_trouble_path, class: "btn-circle-border-simple"%>
+  </div>
+  <% else %>
+   <div class="top-area-button text-center">
+    <%= link_to "ログインする", new_user_session_path, class: "btn-circle-border-simple"%>
+    <%= link_to "新規登録する", new_user_registration_path, class: "btn-circle-border-simple"%>
+   </div>
+   <div class="top-area-sub-button">
+     <%= link_to "みんなの悩みを見る", troubles_path, class: "btn-circle-border-simple"%>
+   </div>
+  <% end %>
+  
+</div>
