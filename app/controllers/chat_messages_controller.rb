@@ -12,8 +12,6 @@ class ChatMessagesController < ApplicationController
     else
       @chat_message.create_notification_chat!(current_user, @trouble.user_id) 
     end
-    
-    redirect_to request.referer
   end
   
   private
