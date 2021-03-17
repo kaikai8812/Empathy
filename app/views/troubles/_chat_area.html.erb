@@ -1,18 +1,16 @@
-           <!--↓チャット送信フォーム↓-->
-         <!--↓チャット表示エリア↓-->
+
 <div class="col-md-2"></div>
 
 <div class="col-md-8">
  <div class="chat-message-area">
   <ul class="container" id="chat-message-list">
-  <% post_comment.room.chat_messages.each do |chat_message| %>
-
-      <%= render "troubles/chat_area_message", chat_message: chat_message, trouble: trouble %>
-   
-  <% end %>
-    
+   <% post_comment.room.chat_messages.each do |chat_message| %>
+    <%= render "troubles/chat_area_message", chat_message: chat_message, trouble: trouble %>
+   <% end %>
   </ul>
  </div>
+ 
+ <!--↓チャット送信フォーム-->
  <div class="chat-form" style="text-align: center">
    <%= form_for chat_message, remote: true do |f| %>
      <%= f.text_area :message, placeholder: "チャット入力", class: "new-message-form" %>

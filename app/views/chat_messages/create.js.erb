@@ -1,27 +1,27 @@
 if (<%= current_user.id %> === <%= @trouble.user_id %>) {
-  $('#chat-message-list').append('
-  <li class="row flex-nowrap">
-    <div class="col-md-2 mt-auto mb-auto">
-      <%= attachment_image_tag @chat_message.user, :profile_image,format: 'jpeg', fallback: "no_image.jpg", size:"50x50", class: "rounded-circle"%>
-    </div>
-    <div class="col-md-8 chat-message-left ">
-      <p><%= @chat_message.message %></p>
-    </div>
-    <div class="col-md-2"></div>
-  </li>
-  ');
+  $('#chat-message-list').append(
+  '<li class="row flex-nowrap">' + 
+    '<div class="col-md-2 mt-auto mb-auto">' +
+      '<%= attachment_image_tag @chat_message.user, :profile_image,format: "jpeg", fallback: "no_image.jpg", size:"50x50", class: "rounded-circle"%>' +
+    '</div>' +
+    '<div class="col-md-8 chat-message-left ">' +
+      '<p><%= @chat_message.message %></p>' +
+    '</div>' +
+    '<div class="col-md-2"></div>' +
+  '</li>'
+  );
 } else {
-  $('#chat-message-list').append('
-  <li class="row flex-nowrap">
-    <div class="col-md-2"></div>
-    <div class="col-md-8 chat-message-right">
-      <p><%= @chat_message.message %></p>
-    </div>
-    <div class="col-md-2 mt-auto mb-auto pull-left">
-      <%= attachment_image_tag @chat_message.user, :profile_image,format: 'jpeg', fallback: "no_image.jpg", size:"50x50", class: "rounded-circle pull-left"%>
-    </div>
-  </li>
-  ');
+  $('#chat-message-list').append(
+  '<li class="row flex-nowrap">' +
+    '<div class="col-md-2"></div>' +
+    '<div class="col-md-8 chat-message-right">' +
+      '<p><%= @chat_message.message %></p>' +
+    '</div>' +
+    '<div class="col-md-2 mt-auto mb-auto pull-left">' +
+      '<%= attachment_image_tag @chat_message.user, :profile_image,format: "jpeg", fallback: "no_image.jpg", size:"50x50", class: "rounded-circle pull-left"%>' +
+    '</div>' +
+  '</li>'
+  );
 }
 
 
